@@ -1,0 +1,15 @@
+services:
+  travel-planner-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: agentic-travel-planner-service:latest
+    container_name: agentic-travel-planner-service
+    working_dir: /workspace
+    environment:
+      TRAVEL_PLANNER_PORT: "8765"
+    ports:
+      - "8765:8765"
+    volumes:
+      - ../../../../../:/workspace
+    restart: unless-stopped

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Interaction Designer"
+  short_description: "상태 전이와 인터랙션 흐름을 설계합니다."
+  default_prompt: "Use $interaction-designer to design the user flow, state transitions, and error recovery."

@@ -1,0 +1,2305 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <title>Travel Planner</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f4f6f2;
+      --panel: #ffffff;
+      --panel-soft: #f9faf7;
+      --ink: #20231f;
+      --muted: #62675e;
+      --line: #dfe4dc;
+      --green: #0f6a55;
+      --green-soft: #e5f2ec;
+      --rust: #b8503f;
+      --rust-soft: #f8e9e5;
+      --teal: #2f7180;
+      --yellow: #f2c14e;
+      --shadow: 0 14px 40px rgba(38, 50, 38, 0.08);
+      --radius: 8px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(90deg, rgba(15, 106, 85, 0.05) 0 1px, transparent 1px 100%),
+        linear-gradient(0deg, rgba(184, 80, 63, 0.04) 0 1px, transparent 1px 100%),
+        var(--bg);
+      background-size: 44px 44px;
+      color: var(--ink);
+      font-family: var(--sans);
+      letter-spacing: 0;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      min-height: 38px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      padding: 0 12px;
+      background: var(--ink);
+      color: #fff;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    button.secondary {
+      background: var(--panel);
+      color: var(--ink);
+      border-color: var(--line);
+    }
+
+    button.ghost {
+      background: transparent;
+      color: var(--green);
+      border-color: var(--line);
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+    }
+
+    .shell {
+      width: min(1440px, 100%);
+      margin: 0 auto;
+      padding: 18px;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: minmax(240px, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+      min-height: 72px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 18px;
+    }
+
+    .brand {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      min-width: 0;
+    }
+
+    .mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, var(--green), var(--teal));
+      position: relative;
+      flex: 0 0 auto;
+      box-shadow: var(--shadow);
+    }
+
+    .mark::before,
+    .mark::after {
+      content: "";
+      position: absolute;
+      background: #fff;
+    }
+
+    .mark::before {
+      width: 24px;
+      height: 3px;
+      left: 9px;
+      top: 19px;
+      transform: rotate(-28deg);
+      border-radius: 999px;
+    }
+
+    .mark::after {
+      width: 7px;
+      height: 7px;
+      right: 9px;
+      top: 13px;
+      border-radius: 50%;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(22px, 3vw, 34px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .subline {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    .status-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .pill {
+      min-height: 30px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 9px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .pill strong {
+      color: var(--ink);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 370px minmax(0, 1fr) 340px;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: clip;
+    }
+
+    .panel-header {
+      min-height: 52px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel-soft);
+    }
+
+    .panel-title {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .panel-body {
+      padding: 14px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 8px 10px;
+      background: #fff;
+      color: var(--ink);
+      outline: none;
+    }
+
+    textarea {
+      min-height: 82px;
+      resize: vertical;
+      font-family: var(--sans);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(15, 106, 85, 0.12);
+    }
+
+    .segmented {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #eef2eb;
+    }
+
+    .segment {
+      min-height: 34px;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      padding: 0 8px;
+      font-size: 12px;
+    }
+
+    .segment.active {
+      background: #fff;
+      color: var(--green);
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(33, 45, 31, 0.08);
+    }
+
+    .switch-row {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel-soft);
+    }
+
+    .switch-row input {
+      width: 18px;
+      min-height: 18px;
+      accent-color: var(--green);
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .helper-card {
+      display: grid;
+      gap: 6px;
+      padding: 12px;
+      border: 1px solid rgba(15, 106, 85, 0.22);
+      border-radius: 8px;
+      background: #eef5f1;
+      margin-bottom: 12px;
+    }
+
+    .helper-card strong {
+      font-size: 14px;
+      line-height: 1.3;
+    }
+
+    .helper-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .phase-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .phase {
+      min-height: 54px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      display: grid;
+      gap: 4px;
+    }
+
+    .phase span {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .phase strong {
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    .phase.running {
+      border-color: rgba(15, 106, 85, 0.35);
+      background: var(--green-soft);
+    }
+
+    .phase.running strong::after {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin-left: 8px;
+      border: 2px solid rgba(15, 106, 85, 0.25);
+      border-top-color: var(--green);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .route-strip {
+      display: grid;
+      grid-template-columns: 1fr 24px 1fr 24px 1fr;
+      gap: 8px;
+      align-items: center;
+      padding: 12px;
+      background: #eef5f1;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .route-node {
+      min-width: 0;
+      padding: 10px;
+      border: 1px solid rgba(15, 106, 85, 0.2);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .route-node span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .route-node strong {
+      display: block;
+      margin-top: 4px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 14px;
+    }
+
+    .arrow {
+      height: 2px;
+      background: var(--green);
+      position: relative;
+    }
+
+    .arrow::after {
+      content: "";
+      position: absolute;
+      right: -1px;
+      top: -4px;
+      width: 0;
+      height: 0;
+      border-left: 8px solid var(--green);
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+    }
+
+    .candidate-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .week-group {
+      display: grid;
+      gap: 8px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel-soft);
+    }
+
+    .week-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .date-choice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 8px;
+    }
+
+    .candidate {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: #fff;
+      cursor: pointer;
+      transition: border-color 0.15s ease, transform 0.15s ease;
+    }
+
+    .candidate:hover {
+      border-color: var(--green);
+      transform: translateY(-1px);
+    }
+
+    .candidate.selected {
+      border-color: var(--green);
+      background: var(--green-soft);
+    }
+
+    .candidate-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .candidate-actions button,
+    .inline-action {
+      min-height: 32px;
+      padding: 0 10px;
+      font-size: 12px;
+    }
+
+    .candidate-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .candidate-date {
+      font-size: 17px;
+      font-weight: 850;
+      line-height: 1.25;
+    }
+
+    .rank {
+      min-width: 30px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #fff;
+      font-weight: 800;
+      font-size: 12px;
+    }
+
+    .candidate-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #eef1ed;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .tag.good {
+      color: var(--green);
+      background: var(--green-soft);
+    }
+
+    .tag.warn {
+      color: var(--rust);
+      background: var(--rust-soft);
+    }
+
+    .family-label {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #eef1ed;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .family-label.full_service {
+      color: var(--green);
+      background: var(--green-soft);
+    }
+
+    .family-label.lcc {
+      color: var(--teal);
+      background: #e6f2f4;
+    }
+
+    .plan-hero {
+      display: grid;
+      gap: 10px;
+      padding: 14px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(15, 106, 85, 0.22);
+      border-radius: 8px;
+      background: #eef5f1;
+    }
+
+    .plan-hero span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .plan-hero strong {
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    .plan-hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .step-stack {
+      display: grid;
+      gap: 10px;
+    }
+
+    .step-card {
+      display: grid;
+      grid-template-columns: 112px minmax(0, 1fr);
+      gap: 12px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .step-card.active,
+    .step-card.ready {
+      border-color: rgba(15, 106, 85, 0.38);
+      background: var(--green-soft);
+    }
+
+    .step-card.confirmed,
+    .step-card.done {
+      border-color: rgba(47, 113, 128, 0.32);
+    }
+
+    .step-card.locked {
+      opacity: 0.62;
+    }
+
+    .step-status {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 28px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #eef1ed;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .step-card.active .step-status,
+    .step-card.ready .step-status {
+      background: #fff;
+      color: var(--green);
+    }
+
+    .step-card.confirmed .step-status {
+      background: var(--green);
+      color: #fff;
+    }
+
+    .step-content {
+      min-width: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .step-content h3 {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.25;
+    }
+
+    .step-content p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .recommendation-list,
+    .impact-list {
+      display: grid;
+      gap: 6px;
+    }
+
+    .recommendation {
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .recommendation strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .recommendation span,
+    .impact-list li {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .recommendation button {
+      margin-top: 8px;
+      min-height: 30px;
+      font-size: 12px;
+      background: #fff;
+      color: var(--green);
+      border-color: rgba(15, 106, 85, 0.28);
+    }
+
+    .stay-options {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .stay-option {
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .stay-option strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .stay-option span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .impact-list {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .prompt {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 6px;
+      padding: 8px;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel-soft);
+      overflow-x: auto;
+    }
+
+    .tab {
+      min-height: 34px;
+      background: transparent;
+      color: var(--muted);
+      border-color: var(--line);
+      white-space: nowrap;
+    }
+
+    .tab.active {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+    }
+
+    .workspace {
+      min-height: 500px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      min-width: 680px;
+      border-collapse: collapse;
+      background: #fff;
+    }
+
+    .collection-table {
+      min-width: 0;
+      table-layout: fixed;
+    }
+
+    .collection-table th,
+    .collection-table td {
+      overflow-wrap: anywhere;
+    }
+
+    .snapshot-table th:nth-child(1),
+    .snapshot-table td:nth-child(1) {
+      width: 42px;
+    }
+
+    .snapshot-table th:nth-child(3),
+    .snapshot-table td:nth-child(3) {
+      width: 88px;
+    }
+
+    .snapshot-table th:nth-child(4),
+    .snapshot-table td:nth-child(4) {
+      width: 104px;
+    }
+
+    .snapshot-table th:nth-child(5),
+    .snapshot-table td:nth-child(5) {
+      width: 88px;
+    }
+
+    .flight-result-table th:nth-child(1),
+    .flight-result-table td:nth-child(1) {
+      width: 42px;
+    }
+
+    .flight-result-table th:nth-child(2),
+    .flight-result-table td:nth-child(2) {
+      width: 150px;
+    }
+
+    .flight-result-table th:nth-child(4),
+    .flight-result-table td:nth-child(4) {
+      width: 76px;
+    }
+
+    .flight-result-table th:nth-child(5),
+    .flight-result-table td:nth-child(5) {
+      width: 96px;
+    }
+
+    .flight-result-table th:nth-child(6),
+    .flight-result-table td:nth-child(6) {
+      width: 88px;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+      font-size: 13px;
+    }
+
+    th {
+      color: var(--muted);
+      background: #f6f7f4;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    pre {
+      margin: 0;
+      padding: 12px;
+      max-height: 420px;
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #161a16;
+      color: #eaf0e7;
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .metric {
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 18px;
+      overflow-wrap: anywhere;
+    }
+
+    .artifact-list {
+      display: grid;
+      gap: 8px;
+      max-height: 340px;
+      overflow: auto;
+    }
+
+    .artifact {
+      display: grid;
+      gap: 4px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .artifact strong {
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .artifact span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .empty {
+      display: grid;
+      place-items: center;
+      min-height: 260px;
+      color: var(--muted);
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      background: var(--panel-soft);
+      text-align: center;
+      padding: 24px;
+    }
+
+    .loading {
+      opacity: 0.65;
+      pointer-events: none;
+    }
+
+    .toast {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: min(420px, calc(100vw - 36px));
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--green);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      color: var(--ink);
+      transform: translateY(140%);
+      transition: transform 0.2s ease;
+      z-index: 20;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+    }
+
+    .toast.error {
+      border-left-color: var(--rust);
+    }
+
+    .split-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    @media (max-width: 1180px) {
+      .grid {
+        grid-template-columns: 360px minmax(0, 1fr);
+      }
+
+      .right-column {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .shell {
+        padding: 12px;
+      }
+
+      .topbar,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .status-strip {
+        justify-content: flex-start;
+      }
+
+      .form-grid,
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .route-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .arrow {
+        width: 2px;
+        height: 18px;
+        justify-self: center;
+      }
+
+      .arrow::after {
+        right: -4px;
+        top: auto;
+        bottom: -1px;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 8px solid var(--green);
+        border-bottom: 0;
+      }
+
+      .actions {
+        grid-template-columns: 1fr;
+      }
+
+      .phase-list {
+        grid-template-columns: 1fr;
+      }
+
+      .step-card {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="mark" aria-hidden="true"></div>
+        <div>
+          <h1>Travel Planner</h1>
+          <div class="subline">정해진 만큼만 입력하면 다음 여행 결정을 추천합니다</div>
+        </div>
+      </div>
+      <div class="status-strip">
+        <span class="pill">Server <strong id="serverStatus">확인 중</strong></span>
+        <span class="pill">Selected <strong id="selectedBadge">없음</strong></span>
+        <span class="pill">Draft <strong id="draftStatus">대기</strong></span>
+      </div>
+    </header>
+
+    <section class="grid">
+      <aside class="panel">
+        <div class="panel-header">
+          <h2 class="panel-title">여행 조건</h2>
+          <button class="ghost" id="resetBtn" type="button">초기화</button>
+        </div>
+        <div class="panel-body">
+          <div class="form-grid">
+            <div class="field">
+              <label for="country">나라/권역</label>
+              <input id="country" value="" placeholder="예: 일본, 동남아, 유럽">
+            </div>
+            <div class="field">
+              <label for="destination">지역/도시</label>
+              <input id="destination" value="" placeholder="예: 후쿠오카, 도쿄, 다낭">
+            </div>
+            <div class="field">
+              <label for="period">시기</label>
+              <input id="period" value="" placeholder="예: 9월, 가을, 연말">
+            </div>
+            <div class="field">
+              <label for="nights">박수</label>
+              <input id="nights" type="number" min="0" value="3">
+            </div>
+            <input id="maxCandidates" type="hidden" value="31">
+            <div class="field">
+              <label for="departureDate">선택 출발일</label>
+              <input id="departureDate" type="date">
+            </div>
+            <div class="field">
+              <label for="returnDate">선택 복귀일</label>
+              <input id="returnDate" type="date">
+            </div>
+            <div class="field full">
+              <label for="travelPurpose">여행 목적</label>
+              <input id="travelPurpose" value="" placeholder="예: 식도락, 쇼핑, 휴식">
+            </div>
+            <div class="field full">
+              <label>요일 성향</label>
+              <div class="segmented" id="weekendGroup">
+                <button class="segment active" type="button" data-value="prefer">주말 선호</button>
+                <button class="segment" type="button" data-value="require">주말 필수</button>
+                <button class="segment" type="button" data-value="avoid">평일 중심</button>
+                <button class="segment" type="button" data-value="either">균형</button>
+              </div>
+            </div>
+            <input id="weatherEnabled" type="checkbox" checked hidden>
+            <input id="lat" type="hidden" value="33.5902">
+            <input id="lon" type="hidden" value="130.4017">
+            <input id="flightEnabled" type="checkbox" checked hidden>
+            <div class="field">
+              <label for="airlinePriority">항공권 기준</label>
+              <select id="airlinePriority">
+                <option value="balanced">균형 있게 보기</option>
+                <option value="full_service">대형항공사 우선</option>
+                <option value="lcc">LCC 우선</option>
+                <option value="price">최저가 우선</option>
+                <option value="schedule">시간 좋은 편 우선</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="flightStyle">이동 방식</label>
+              <select id="flightStyle">
+                <option value="direct">직항 선호</option>
+                <option value="transit_ok">경유 허용</option>
+                <option value="either">둘 다 비교</option>
+              </select>
+            </div>
+            <input id="flightConfirmed" type="checkbox" hidden>
+            <div class="field full">
+              <label for="flightDetails">선택/예약한 항공편</label>
+              <textarea id="flightDetails" placeholder="후보를 고르면 여기에 들어옵니다. 직접 입력해도 됩니다."></textarea>
+              <div class="hint">실제 항공편을 넣으면 도착시간, 귀국편, 첫날/마지막 날 일정을 재확인합니다.</div>
+            </div>
+            <div class="field">
+              <label for="lodgingArea">숙소 권역</label>
+              <input id="lodgingArea" value="" placeholder="예: 하카타역 근처">
+            </div>
+            <input id="lodgingConfirmed" type="checkbox" hidden>
+            <div class="field full">
+              <label for="lodgingDetails">선택/예약한 숙소</label>
+              <textarea id="lodgingDetails" placeholder="숙소 후보를 고르면 여기에 들어옵니다. 직접 입력해도 됩니다."></textarea>
+              <div class="hint">숙소를 넣으면 위치, 체크인/체크아웃, 짐 보관 기준으로 동선을 재확인합니다.</div>
+            </div>
+          </div>
+          <div class="actions">
+            <button id="planBtn" type="button">다음 추천 보기</button>
+            <button class="secondary" id="researchBtn" type="button">후보 한 번에 보기</button>
+            <button class="secondary" id="recommendBtn" type="button">날짜만 보기</button>
+            <button class="secondary" id="loadArtifactsBtn" type="button">저장 계획</button>
+          </div>
+        </div>
+      </aside>
+
+      <section class="panel workspace">
+        <div class="route-strip">
+          <div class="route-node">
+            <span>출발</span>
+            <strong id="routeOrigin">집/공항</strong>
+          </div>
+          <div class="arrow" aria-hidden="true"></div>
+          <div class="route-node">
+            <span>현지</span>
+            <strong id="routeDestination">미정</strong>
+          </div>
+          <div class="arrow" aria-hidden="true"></div>
+          <div class="route-node">
+            <span>복귀</span>
+            <strong id="routeReturn">미정</strong>
+          </div>
+        </div>
+        <div class="tabs">
+          <button class="tab active" type="button" data-tab="plan">플랜</button>
+          <button class="tab" type="button" data-tab="dates">날짜</button>
+          <button class="tab" type="button" data-tab="weather">날씨</button>
+          <button class="tab" type="button" data-tab="collect">항공/숙소</button>
+          <button class="tab" type="button" data-tab="raw">상세</button>
+        </div>
+        <div class="panel-body">
+          <div id="planTab" class="tab-panel">
+            <div id="planSummary" class="plan-hero">
+              <span>다음 결정</span>
+              <strong>현재 입력으로 다음 단계를 확인하세요.</strong>
+              <p>정해진 정보가 없으면 추천부터, 확정 정보가 있으면 영향 재확인부터 보여줍니다.</p>
+            </div>
+            <div id="stepResults" class="step-stack">
+              <div class="empty">다음 단계 보기를 실행하세요.</div>
+            </div>
+          </div>
+
+          <div id="datesTab" class="tab-panel" hidden>
+            <div id="phaseList" class="phase-list">
+              <div class="phase"><span>1. 날짜</span><strong>대기</strong></div>
+              <div class="phase"><span>2. 날씨</span><strong>대기</strong></div>
+              <div class="phase"><span>3. 항공</span><strong>대기</strong></div>
+            </div>
+            <div id="dateResults" class="candidate-list">
+              <div class="empty">통합 탐색을 실행하세요.</div>
+            </div>
+          </div>
+
+          <div id="weatherTab" class="tab-panel" hidden>
+            <div class="summary-grid">
+              <div class="metric">
+                <span>평균기온</span>
+                <strong id="weatherTemp">-</strong>
+              </div>
+              <div class="metric">
+                <span>강수량</span>
+                <strong id="weatherRain">-</strong>
+              </div>
+              <div class="metric">
+                <span>표본</span>
+                <strong id="weatherSample">-</strong>
+              </div>
+            </div>
+            <button id="weatherBtn" type="button">선택 날짜 비교</button>
+            <div style="height: 12px"></div>
+            <pre id="weatherRaw">선택된 날짜가 필요합니다.</pre>
+          </div>
+
+          <div id="collectTab" class="tab-panel" hidden>
+            <div class="helper-card">
+              <strong>선택한 날짜 기준으로 후보를 봅니다.</strong>
+              <p>항공권은 위의 항공권 기준을, 숙소는 입력한 숙소 권역을 반영해 후보를 정리합니다.</p>
+            </div>
+            <div class="form-grid">
+              <div class="field full">
+                <label for="collectKind">보고 싶은 후보</label>
+                <select id="collectKind">
+                  <option value="flight">항공권</option>
+                  <option value="lodging">숙소</option>
+                </select>
+              </div>
+            </div>
+            <div class="actions">
+              <button id="collectBtn" type="button">후보 보기</button>
+            </div>
+            <div style="height: 12px"></div>
+            <div id="collectResults" class="table-wrap" hidden></div>
+          </div>
+
+          <div id="rawTab" class="tab-panel" hidden>
+            <pre id="rawJson">아직 선택된 상세 정보가 없습니다.</pre>
+          </div>
+        </div>
+      </section>
+
+      <aside class="panel right-column">
+        <div class="panel-header">
+          <h2 class="panel-title">저장된 계획</h2>
+          <button class="ghost" id="refreshArtifactsBtn" type="button">새로고침</button>
+        </div>
+        <div class="panel-body">
+          <div id="artifactList" class="artifact-list">
+            <div class="empty">저장된 계획이 없습니다.</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    const state = {
+      weekend: 'prefer',
+      selectedCandidate: null,
+      lastPayload: null,
+      lastCollect: null,
+      lastResearch: null,
+      flowDecision: null,
+      draftTimer: null,
+      restoring: false
+    };
+
+    const DRAFT_KEY = 'agentic.travelPlanner.draft.v2';
+    const DEFAULT_CARD_SELECTOR = '.card';
+    const DEFAULT_FLIGHT_SEARCH_URL = 'data:text/html,<html><title>Flight Test</title><body><div class=card>Korean Air ICN 09:20 FUK 10:40 KRW 260,000</div><div class=card>Jeju Air ICN 14:30 FUK 16:00 KRW 180,000</div></body></html>';
+    const DEFAULT_LODGING_SEARCH_URL = 'data:text/html,<html><title>Lodging Test</title><body><div class=card>Hotel Nikko Fukuoka Hakata KRW 180,000 check-in 15:00</div><div class=card>Tokyu Stay Tenjin KRW 120,000 subway 5min</div><div class=card>Guest House Hakata KRW 70,000 luggage storage</div></body></html>';
+    const DESTINATION_COORDS = [
+      { keys: ['후쿠오카', 'fukuoka'], lat: '33.5902', lon: '130.4017' },
+      { keys: ['도쿄', 'tokyo'], lat: '35.6762', lon: '139.6503' },
+      { keys: ['오사카', 'osaka'], lat: '34.6937', lon: '135.5023' },
+      { keys: ['삿포로', 'sapporo'], lat: '43.0618', lon: '141.3545' },
+      { keys: ['오키나와', '나하', 'okinawa', 'naha'], lat: '26.2124', lon: '127.6792' },
+      { keys: ['타이베이', 'taipei'], lat: '25.0330', lon: '121.5654' },
+      { keys: ['다낭', 'danang', 'da nang'], lat: '16.0471', lon: '108.2068' },
+      { keys: ['방콕', 'bangkok'], lat: '13.7563', lon: '100.5018' },
+      { keys: ['제주', 'jeju'], lat: '33.4996', lon: '126.5312' }
+    ];
+
+    const $ = (id) => document.getElementById(id);
+
+    function setDraftStatus(value) {
+      const node = $('draftStatus');
+      if (node) node.textContent = value;
+    }
+
+    function currentTravelWindow() {
+      const selected = state.selectedCandidate || {};
+      return {
+        destination: $('destination').value.trim() || '목적지',
+        departDate: $('departureDate').value || selected.departure_date || '선택 출발일',
+        returnDate: $('returnDate').value || selected.return_date || '선택 복귀일'
+      };
+    }
+
+    function dataUrlFromCards(title, cards) {
+      const html = `<html><title>${title}</title><body>${cards.map((card) => `<div class=card>${card}</div>`).join('')}</body></html>`;
+      return `data:text/html;charset=utf-8,${encodeURIComponent(html)}`;
+    }
+
+    function defaultSearchUrl(kind) {
+      const { destination, departDate, returnDate } = currentTravelWindow();
+      if (kind === 'lodging') {
+        return dataUrlFromCards('Lodging Test', [
+          `${destination} 중심 호텔 ${departDate} 체크인 ${returnDate} 체크아웃 KRW 180,000 check-in 15:00`,
+          `${destination} 역세권 비즈니스호텔 ${departDate}부터 KRW 120,000 subway 5min`,
+          `${destination} 가성비 게스트하우스 ${departDate}부터 KRW 70,000 luggage storage`
+        ]);
+      }
+      return dataUrlFromCards('Flight Test', [
+        `Korean Air ICN 09:20 ${destination} 10:40 ${departDate} KRW 260,000`,
+        `Jeju Air ICN 14:30 ${destination} 16:00 ${departDate} KRW 180,000`,
+        `Asiana ICN 18:10 ${destination} 19:30 ${returnDate} KRW 240,000`
+      ]);
+    }
+
+    function syncActualInfoFlags() {
+      $('flightConfirmed').checked = Boolean(($('flightDetails').value || '').trim());
+      $('lodgingConfirmed').checked = Boolean(($('lodgingDetails').value || '').trim());
+    }
+
+    function currentFormValues() {
+      syncActualInfoFlags();
+      return {
+        country: $('country').value,
+        destination: $('destination').value,
+        period: $('period').value,
+        nights: $('nights').value,
+        departureDate: $('departureDate').value,
+        returnDate: $('returnDate').value,
+        travelPurpose: $('travelPurpose').value,
+        weekend: state.weekend,
+        airlinePriority: $('airlinePriority').value,
+        flightStyle: $('flightStyle').value,
+        flightDetails: $('flightDetails').value,
+        lodgingArea: $('lodgingArea').value,
+        lodgingDetails: $('lodgingDetails').value,
+        lat: $('lat').value,
+        lon: $('lon').value
+      };
+    }
+
+    function applyFormValues(values = {}) {
+      $('country').value = values.country || '';
+      $('destination').value = values.destination || '';
+      $('period').value = values.period || '';
+      $('nights').value = values.nights || 3;
+      $('departureDate').value = values.departureDate || '';
+      $('returnDate').value = values.returnDate || '';
+      $('travelPurpose').value = values.travelPurpose || '';
+      state.weekend = values.weekend || 'prefer';
+      $('airlinePriority').value = values.airlinePriority || 'balanced';
+      $('flightStyle').value = values.flightStyle || 'direct';
+      $('flightDetails').value = values.flightDetails || '';
+      $('lodgingArea').value = values.lodgingArea || '';
+      $('lodgingDetails').value = values.lodgingDetails || '';
+      $('lat').value = values.lat || '33.5902';
+      $('lon').value = values.lon || '130.4017';
+      syncActualInfoFlags();
+      $('routeDestination').textContent = $('destination').value || '미정';
+      $('routeReturn').textContent = $('returnDate').value || '미정';
+      document.querySelectorAll('.segment').forEach((item) => {
+        item.classList.toggle('active', item.dataset.value === state.weekend);
+      });
+    }
+
+    function saveDraft() {
+      if (state.restoring) return;
+      const payload = {
+        savedAt: new Date().toISOString(),
+        form: currentFormValues(),
+        selectedCandidate: state.selectedCandidate,
+        lastPayload: state.lastPayload,
+        lastCollect: state.lastCollect
+      };
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(payload));
+      setDraftStatus('저장됨');
+    }
+
+    function scheduleDraftSave() {
+      setDraftStatus('저장 중');
+      window.clearTimeout(state.draftTimer);
+      state.draftTimer = window.setTimeout(saveDraft, 350);
+    }
+
+    function restoreDraft() {
+      const raw = localStorage.getItem(DRAFT_KEY);
+      if (!raw) {
+        setDraftStatus('대기');
+        return false;
+      }
+      try {
+        state.restoring = true;
+        const draft = JSON.parse(raw);
+        applyFormValues(draft.form || {});
+        state.selectedCandidate = draft.selectedCandidate || null;
+        state.lastPayload = draft.lastPayload || null;
+        state.lastCollect = draft.lastCollect || null;
+        if (state.lastPayload) renderCandidates(state.lastPayload);
+        if (state.lastCollect) renderCollect(state.lastCollect);
+        if (state.selectedCandidate) {
+          $('selectedBadge').textContent = `#${state.selectedCandidate.rank || '선택'}`;
+          $('routeReturn').textContent = state.selectedCandidate.return_date || $('returnDate').value || '미정';
+        }
+        setDraftStatus('복원됨');
+        return true;
+      } catch (error) {
+        localStorage.removeItem(DRAFT_KEY);
+        setDraftStatus('대기');
+        return false;
+      } finally {
+        state.restoring = false;
+      }
+    }
+
+    function clearDraft() {
+      localStorage.removeItem(DRAFT_KEY);
+      setDraftStatus('비움');
+    }
+
+    function applyDestinationCoordinates() {
+      const text = `${$('country').value} ${$('destination').value}`.toLowerCase();
+      const matched = DESTINATION_COORDS.find((item) => item.keys.some((key) => text.includes(key.toLowerCase())));
+      if (!matched) return;
+      $('lat').value = matched.lat;
+      $('lon').value = matched.lon;
+    }
+
+    function toast(message, isError = false) {
+      const node = $('toast');
+      node.textContent = message;
+      node.classList.toggle('error', isError);
+      node.classList.add('show');
+      window.clearTimeout(node._timer);
+      node._timer = window.setTimeout(() => node.classList.remove('show'), 3200);
+    }
+
+    function setLoading(node, loading) {
+      node.classList.toggle('loading', loading);
+      node.disabled = loading;
+    }
+
+    function setPhaseStatus(statuses) {
+      const defaults = [
+        { label: '1. 날짜', value: '대기', running: false },
+        { label: '2. 날씨', value: '대기', running: false },
+        { label: '3. 항공', value: '대기', running: false }
+      ];
+      const merged = defaults.map((item, index) => Object.assign({}, item, statuses[index] || {}));
+      $('phaseList').innerHTML = merged.map((item) => `
+        <div class="phase ${item.running ? 'running' : ''}">
+          <span>${item.label}</span>
+          <strong>${item.value}</strong>
+        </div>
+      `).join('');
+    }
+
+    async function requestJson(url, options = {}) {
+      const res = await fetch(url, options);
+      const text = await res.text();
+      let data = {};
+      try {
+        data = text ? JSON.parse(text) : {};
+      } catch (error) {
+        throw new Error(text || res.statusText);
+      }
+      if (!res.ok) {
+        throw new Error(data.detail || res.statusText);
+      }
+      return data;
+    }
+
+    function activeTab(name) {
+      document.querySelectorAll('.tab').forEach((tab) => {
+        tab.classList.toggle('active', tab.dataset.tab === name);
+      });
+      document.querySelectorAll('.tab-panel').forEach((panel) => {
+        panel.hidden = panel.id !== `${name}Tab`;
+      });
+    }
+
+    function dateText(candidate) {
+      return `${candidate.departure_date} -> ${candidate.return_date}`;
+    }
+
+    function weatherText(weather) {
+      if (!weather) return '미조회';
+      if (weather.status === 'skipped') return '좌표 미입력';
+      if (weather.status !== 'ok') return '조회 실패';
+      const parts = [];
+      if (weather.avg_temp_c !== null) parts.push(`평균 ${weather.avg_temp_c}C`);
+      if (weather.avg_trip_precip_mm !== null) parts.push(`강수 ${weather.avg_trip_precip_mm}mm`);
+      if (weather.avg_rainy_days !== null) parts.push(`비 ${weather.avg_rainy_days}일`);
+      return parts.join(', ') || '데이터 부족';
+    }
+
+    function splitPurpose(value) {
+      return String(value || '')
+        .split(',')
+        .map((item) => item.trim())
+        .filter(Boolean);
+    }
+
+    function planEvidence() {
+      const dateCandidates = (state.lastPayload?.candidates || state.lastResearch?.dates?.candidates || []).length;
+      const researchFlights = (state.lastResearch?.flights || [])
+        .reduce((sum, payload) => sum + ((payload.items || []).length), 0);
+      const collectFlightItems = state.lastCollect?.kind === 'flight' ? (state.lastCollect.items || []).length : 0;
+      const collectLodgingItems = state.lastCollect?.kind === 'lodging' ? (state.lastCollect.items || []).length : 0;
+      const weatherDone = (state.lastPayload?.candidates || state.lastResearch?.dates?.candidates || [])
+        .some((candidate) => candidate.weather?.status === 'ok');
+      return {
+        date_candidates: dateCandidates,
+        weather_status: weatherDone ? 'done' : 'not_run',
+        flight_items: Math.max(researchFlights, collectFlightItems),
+        lodging_items: collectLodgingItems
+      };
+    }
+
+    function currentPlanSnapshot() {
+      syncActualInfoFlags();
+      const selected = state.selectedCandidate || {};
+      return {
+        country: $('country').value.trim(),
+        region: $('destination').value.trim(),
+        destination: $('destination').value.trim(),
+        period: $('period').value.trim(),
+        nights: Number($('nights').value || 0),
+        weekend: state.weekend,
+        departure_date: $('departureDate').value || selected.departure_date || '',
+        return_date: $('returnDate').value || selected.return_date || '',
+        travel_purpose: splitPurpose($('travelPurpose').value),
+        airline_priority: $('airlinePriority').value,
+        flight_style: $('flightStyle').value,
+        flight_confirmed: Boolean(($('flightDetails').value || '').trim()),
+        lodging_confirmed: Boolean(($('lodgingDetails').value || '').trim()),
+        lodging_area: $('lodgingArea').value.trim(),
+        evidence: planEvidence()
+      };
+    }
+
+    function stepStatusLabel(status) {
+      const labels = {
+        active: '진행 중',
+        ready: '추천 준비',
+        done: '완료',
+        confirmed: '확정',
+        queued: '대기',
+        locked: '잠김'
+      };
+      return labels[status] || status || '대기';
+    }
+
+    function recommendationActionLabel(stepKey) {
+      const labels = {
+        country_or_region_discovery: '나라/지역 선택',
+        timing_selection: '시기 선택',
+        region_selection: '지역 선택',
+        purpose_scope: '목적으로 추가',
+        lodging_selection: '숙소 권역 선택'
+      };
+      return labels[stepKey] || '';
+    }
+
+    function renderRecommendations(items, stepKey) {
+      if (!items || items.length === 0) return '';
+      const actionLabel = recommendationActionLabel(stepKey);
+      return `
+        <div class="recommendation-list">
+          ${items.map((item, index) => `
+            <div class="recommendation">
+              <strong>${escapeHtml(item.title || '-')}</strong>
+              <span>${escapeHtml(item.why || '')}</span>
+              ${item.next ? `<span>${escapeHtml(item.next)}</span>` : ''}
+              ${actionLabel ? `<button type="button" class="recommend-select" data-step-key="${escapeHtml(stepKey || '')}" data-index="${index}">${escapeHtml(actionLabel)}</button>` : ''}
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function applyRecommendation(stepKey, item) {
+      const title = String(item?.title || '').trim();
+      if (!title) return;
+      if (stepKey === 'country_or_region_discovery') {
+        const [country, ...rest] = title.split(/\s+/);
+        $('country').value = country || '';
+        $('destination').value = rest.join(' ');
+      } else if (stepKey === 'timing_selection') {
+        $('period').value = title;
+      } else if (stepKey === 'region_selection') {
+        $('destination').value = title;
+      } else if (stepKey === 'lodging_selection') {
+        $('lodgingArea').value = title;
+      } else {
+        $('travelPurpose').value = $('travelPurpose').value || title;
+      }
+      $('routeDestination').textContent = $('destination').value || '미정';
+      scheduleDraftSave();
+      decidePlanStep({ activate: false }).catch(() => {});
+      toast(`${title} 선택`);
+    }
+
+    function bindRecommendationButtons(decision) {
+      document.querySelectorAll('.recommend-select').forEach((button) => {
+        button.addEventListener('click', () => {
+          const step = (decision.steps || []).find((item) => item.key === button.dataset.stepKey);
+          const recommendation = step?.recommendations?.[Number(button.dataset.index)];
+          applyRecommendation(button.dataset.stepKey, recommendation);
+        });
+      });
+    }
+
+    function renderPlanDecision(decision) {
+      state.flowDecision = decision;
+      const questionText = (decision.questions || []).join(' ');
+      const impactText = (decision.impact_checks || []).length
+        ? `재확인: ${(decision.impact_checks || []).join(' ')}`
+        : '입력된 조건을 기준으로 다음 추천 단계를 정리했습니다.';
+      $('planSummary').innerHTML = `
+        <span>${escapeHtml(stepStatusLabel(decision.status))} · ${escapeHtml(decision.stage || 'plan')}</span>
+        <strong>${escapeHtml(decision.next_action?.label || '현재 입력으로 다음 단계를 확인하세요.')}</strong>
+        <p>${escapeHtml(questionText || impactText)}</p>
+      `;
+      const steps = decision.steps || [];
+      $('stepResults').innerHTML = steps.map((step) => `
+        <article class="step-card ${escapeHtml(step.status || '')}">
+          <div><span class="step-status">${escapeHtml(stepStatusLabel(step.status))}</span></div>
+          <div class="step-content">
+            <h3>${escapeHtml(step.title || '')}</h3>
+            <p>${escapeHtml(step.summary || '')}</p>
+            ${renderRecommendations(step.recommendations, step.key)}
+            ${(step.impact_checks || []).length ? `
+              <ul class="impact-list">
+                ${(step.impact_checks || []).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+              </ul>
+            ` : ''}
+          </div>
+        </article>
+      `).join('') || '<div class="empty">단계 결과가 없습니다.</div>';
+      bindRecommendationButtons(decision);
+    }
+
+    async function decidePlanStep({ activate = true } = {}) {
+      const button = $('planBtn');
+      if (button) setLoading(button, true);
+      try {
+        const payload = currentPlanSnapshot();
+        const data = await requestJson('/planner/steps', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        renderPlanDecision(data);
+        if (activate) activeTab('plan');
+        $('rawJson').textContent = JSON.stringify(data, null, 2);
+        return data;
+      } catch (error) {
+        toast(error.message, true);
+        throw error;
+      } finally {
+        if (button) setLoading(button, false);
+      }
+    }
+
+    function renderCandidates(payload) {
+      const list = $('dateResults');
+      list.innerHTML = '';
+      if (!payload.candidates || payload.candidates.length === 0) {
+        list.innerHTML = '<div class="empty">후보가 없습니다.</div>';
+        return;
+      }
+
+      const sorted = payload.candidates.slice().sort((a, b) => {
+        const weekDelta = Number(a.week_index || 999) - Number(b.week_index || 999);
+        return weekDelta || String(a.departure_date).localeCompare(String(b.departure_date));
+      });
+      const grouped = sorted.reduce((acc, candidate) => {
+        const key = candidate.week_label || '후보';
+        if (!acc[key]) acc[key] = [];
+        acc[key].push(candidate);
+        return acc;
+      }, {});
+
+      Object.entries(grouped).forEach(([weekLabel, candidates]) => {
+        const group = document.createElement('section');
+        group.className = 'week-group';
+        const rangeText = `${candidates[0]?.departure_date || ''}부터`;
+        group.innerHTML = `
+          <div class="week-title">
+            <span>${escapeHtml(weekLabel)}</span>
+            <span>${escapeHtml(rangeText)}</span>
+          </div>
+          <div class="date-choice-grid"></div>
+        `;
+        const grid = group.querySelector('.date-choice-grid');
+        candidates.forEach((candidate) => {
+        const item = document.createElement('article');
+        item.className = 'candidate';
+        item.dataset.rank = candidate.rank;
+        item.innerHTML = `
+          <div class="candidate-head">
+            <div>
+              <div class="candidate-date">${escapeHtml(candidate.date_range_label || dateText(candidate))}</div>
+              <div class="candidate-meta">
+                <span class="tag good">${escapeHtml(candidate.weekday_sequence || candidate.weekday_label || '')}</span>
+                <span class="tag good">${candidate.pattern}</span>
+                <span class="tag">평일 ${candidate.leave_days_estimate}일</span>
+                <span class="tag">주말 ${candidate.weekend_days}일</span>
+                <span class="tag warn">점수 ${candidate.score}</span>
+              </div>
+            </div>
+            <span class="rank">${candidate.rank}</span>
+          </div>
+          <div class="prompt">${candidate.confirmation_prompt}</div>
+          <div class="candidate-meta">
+            <span class="tag">${weatherText(candidate.weather)}</span>
+          </div>
+          <div class="candidate-actions">
+            <button type="button" class="secondary">선택</button>
+          </div>
+        `;
+        item.addEventListener('click', () => selectCandidate(candidate, item));
+        item.querySelector('button').addEventListener('click', (event) => {
+          event.stopPropagation();
+          selectCandidate(candidate, item);
+        });
+        grid.appendChild(item);
+        });
+        list.appendChild(group);
+      });
+    }
+
+    function selectCandidate(candidate, node) {
+      state.selectedCandidate = candidate;
+      document.querySelectorAll('.candidate').forEach((item) => item.classList.remove('selected'));
+      node.classList.add('selected');
+      $('selectedBadge').textContent = `#${candidate.rank}`;
+      $('routeReturn').textContent = candidate.return_date;
+      $('departureDate').value = candidate.departure_date || '';
+      $('returnDate').value = candidate.return_date || '';
+      $('rawJson').textContent = JSON.stringify(candidate, null, 2);
+      scheduleDraftSave();
+      toast(`${candidate.date_range_label || dateText(candidate)} 선택`);
+      decidePlanStep({ activate: false }).catch(() => {});
+    }
+
+    function renderCollect(payload) {
+      state.lastCollect = payload;
+      $('rawJson').textContent = JSON.stringify(payload, null, 2);
+      const wrap = $('collectResults');
+      wrap.hidden = false;
+      const rows = (payload.items || []).map((item) => `
+        <tr>
+          <td>${item.index}</td>
+          <td>${escapeHtml(item.text)}</td>
+          <td>${(item.times || []).join('<br>') || '-'}</td>
+          <td>${(item.prices || []).join('<br>') || '-'}</td>
+          <td>${airlineFamilyBadge(item.airline_family)}</td>
+          <td><button type="button" class="inline-action choose-collected" data-index="${item.index}">계획에 넣기</button></td>
+        </tr>
+      `).join('');
+      const heading = payload.kind === 'lodging' ? '숙소 후보' : '항공권 후보';
+      wrap.innerHTML = `
+        <div class="helper-card">
+          <strong>${heading}</strong>
+          <p>${escapeHtml(payload.search_context?.depart_date || '-')}부터 ${escapeHtml(payload.search_context?.return_date || '-')}까지의 후보입니다. 마음에 드는 항목을 계획에 넣으세요.</p>
+        </div>
+        <div class="table-wrap">
+          <table class="collection-table snapshot-table">
+            <thead>
+              <tr><th>#</th><th>후보</th><th>시간</th><th>가격</th><th>분류</th><th>선택</th></tr>
+            </thead>
+            <tbody>${rows || '<tr><td colspan="6">결과 없음</td></tr>'}</tbody>
+          </table>
+        </div>
+        ${payload.kind === 'lodging' ? renderStayPlanOptions(payload) : ''}
+      `;
+      bindCollectedItemButtons(payload);
+      scheduleDraftSave();
+    }
+
+    function renderFlightPayloads(payloads) {
+      if (!payloads || payloads.length === 0) {
+        $('collectResults').hidden = false;
+        $('collectResults').innerHTML = '<div class="empty">항공권 후보가 없습니다.</div>';
+        return;
+      }
+      const rows = payloads.flatMap((payload) => (payload.items || []).map((item) => `
+        <tr>
+          <td>${payload.candidate_rank || '-'}</td>
+          <td>${payload.depart_date || '-'} -> ${payload.return_date || '-'}</td>
+          <td>${escapeHtml(item.text)}</td>
+          <td>${(item.times || []).join('<br>') || '-'}</td>
+          <td>${(item.prices || []).join('<br>') || '-'}</td>
+          <td>${airlineFamilyBadge(item.airline_family)}</td>
+          <td><button type="button" class="inline-action choose-integrated-flight" data-rank="${payload.candidate_rank || '-'}" data-index="${item.index}">계획에 넣기</button></td>
+        </tr>
+      `)).join('');
+      const wrap = $('collectResults');
+      wrap.hidden = false;
+      wrap.innerHTML = `
+        <div class="helper-card">
+          <strong>항공권 후보</strong>
+          <p>날짜 후보 기준으로 찾은 항공권입니다. 실제 예약한 항공편이 있으면 직접 적어도 됩니다.</p>
+        </div>
+        <div class="table-wrap">
+          <table class="collection-table flight-result-table">
+            <thead>
+              <tr><th>후보</th><th>날짜</th><th>항공편</th><th>시간</th><th>가격</th><th>분류</th><th>선택</th></tr>
+            </thead>
+            <tbody>${rows || '<tr><td colspan="7">결과 없음</td></tr>'}</tbody>
+          </table>
+        </div>
+      `;
+      bindIntegratedFlightButtons(payloads);
+    }
+
+    function renderStayPlanOptions(payload) {
+      const nights = Number($('nights').value || 0);
+      if (nights <= 0) return '';
+      const area = $('lodgingArea').value.trim() || $('destination').value.trim() || '중심 권역';
+      const first = Math.ceil(nights / 2);
+      const second = Math.max(nights - first, 0);
+      const options = [
+        {
+          title: `한 숙소에서 ${nights}박`,
+          body: `${area}에 고정하면 짐 이동이 적고 첫 여행 계획이 안정적입니다.`
+        },
+        {
+          title: second ? `${first}박 + ${second}박으로 나누기` : '숙소 이동 없이 유지',
+          body: second ? '앞 일정은 교통 좋은 권역, 뒤 일정은 관광/쇼핑 권역으로 나눌 수 있습니다.' : '짧은 일정은 숙소를 나누지 않는 편이 낫습니다.'
+        },
+        {
+          title: '날마다 다르게 묵기',
+          body: '여러 도시를 도는 일정이거나 가격 차이가 큰 경우만 검토합니다. 체크아웃과 짐 보관이 늘어납니다.'
+        }
+      ];
+      return `
+        <div class="stay-options">
+          ${options.map((option) => `
+            <div class="stay-option">
+              <strong>${escapeHtml(option.title)}</strong>
+              <span>${escapeHtml(option.body)}</span>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function collectedSummary(item) {
+      const parts = [item.text];
+      if ((item.times || []).length) parts.push(`시간: ${(item.times || []).join(', ')}`);
+      if ((item.prices || []).length) parts.push(`가격: ${(item.prices || []).join(', ')}`);
+      return parts.filter(Boolean).join('\n');
+    }
+
+    function applyCollectedItem(kind, item) {
+      if (!item) return;
+      if (kind === 'lodging') {
+        $('lodgingDetails').value = collectedSummary(item);
+        if (!$('lodgingArea').value.trim()) $('lodgingArea').value = $('destination').value.trim();
+        $('lodgingConfirmed').checked = true;
+        toast('숙소 정보를 예정 계획에 넣었습니다.');
+      } else {
+        $('flightDetails').value = collectedSummary(item);
+        $('flightConfirmed').checked = true;
+        toast('항공편 정보를 예정 계획에 넣었습니다.');
+      }
+      scheduleDraftSave();
+      decidePlanStep({ activate: false }).catch(() => {});
+    }
+
+    function bindCollectedItemButtons(payload) {
+      document.querySelectorAll('.choose-collected').forEach((button) => {
+        button.addEventListener('click', () => {
+          const item = (payload.items || []).find((candidate) => Number(candidate.index) === Number(button.dataset.index));
+          applyCollectedItem(payload.kind, item);
+        });
+      });
+    }
+
+    function bindIntegratedFlightButtons(payloads) {
+      document.querySelectorAll('.choose-integrated-flight').forEach((button) => {
+        const rank = button.dataset.rank;
+        const index = Number(button.dataset.index);
+        button.addEventListener('click', () => {
+          const payload = (payloads || []).find((item) => String(item.candidate_rank || '-') === String(rank));
+          const item = (payload?.items || []).find((candidate) => Number(candidate.index) === index);
+          applyCollectedItem('flight', item);
+        });
+      });
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    function airlineFamilyLabel(value) {
+      const labels = {
+        full_service: '대형항공',
+        lcc: 'LCC',
+        unknown: '미분류',
+      };
+      return labels[value] || value || '-';
+    }
+
+    function airlineFamilyBadge(value) {
+      const raw = value || 'unknown';
+      const className = String(raw).replace(/[^a-z0-9_-]/gi, '');
+      return `<span class="family-label ${className}" title="${escapeHtml(raw)}">${escapeHtml(airlineFamilyLabel(raw))}</span>`;
+    }
+
+    function artifactLabel(name) {
+      if (name.startsWith('research_')) return '통합 후보 계획';
+      if (name.startsWith('date_candidates_')) return '날짜 후보 계획';
+      if (name.startsWith('weather_')) return '날씨 비교';
+      if (name.startsWith('collection_flight_')) return '항공권 후보';
+      if (name.startsWith('collection_lodging_')) return '숙소 후보';
+      if (name.startsWith('collection_')) return '후보 목록';
+      if (name.startsWith('flight_')) return '항공권 후보';
+      if (name.startsWith('lodging_')) return '숙소 후보';
+      return name.replace(/\.json$/i, '');
+    }
+
+    async function recommendDates() {
+      const button = $('recommendBtn');
+      setLoading(button, true);
+      try {
+        applyDestinationCoordinates();
+        setPhaseStatus([
+          { value: '계산 중', running: true },
+          { value: '날짜만 실행' },
+          { value: '날짜만 실행' }
+        ]);
+        const payload = {
+          period: $('period').value.trim(),
+          nights: Number($('nights').value || 0),
+          destination: $('destination').value.trim(),
+          weekend: state.weekend,
+          max_candidates: 31,
+          weather: false,
+          lat: $('lat').value ? Number($('lat').value) : null,
+          lon: $('lon').value ? Number($('lon').value) : null,
+          save: true
+        };
+        const data = await requestJson('/dates/recommend', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        state.lastPayload = data;
+        state.selectedCandidate = null;
+        $('selectedBadge').textContent = '없음';
+        $('routeDestination').textContent = payload.destination || '미정';
+        $('routeReturn').textContent = '미정';
+        $('rawJson').textContent = JSON.stringify(data, null, 2);
+        renderCandidates(data);
+        loadArtifacts();
+        activeTab('dates');
+        scheduleDraftSave();
+        setPhaseStatus([
+          { value: `${(data.candidates || []).length}개 완료` },
+          { value: '날짜 선택 후 비교' },
+          { value: '미실행' }
+        ]);
+        await decidePlanStep({ activate: false });
+        toast('날짜 후보 생성 완료');
+      } catch (error) {
+        setPhaseStatus([
+          { value: '오류' },
+          { value: '중단' },
+          { value: '중단' }
+        ]);
+        toast(error.message, true);
+      } finally {
+        setLoading(button, false);
+      }
+    }
+
+    async function runIntegratedResearch() {
+      const button = $('researchBtn');
+      setLoading(button, true);
+      setLoading($('recommendBtn'), true);
+      try {
+        applyDestinationCoordinates();
+        const includeFlights = $('flightEnabled').checked;
+        setPhaseStatus([
+          { value: '날짜 계산 중', running: true },
+          { value: $('weatherEnabled').checked ? '날씨 가져오는 중' : '건너뜀', running: $('weatherEnabled').checked },
+          { value: includeFlights ? '항공 후보 확인 중' : '건너뜀', running: includeFlights }
+        ]);
+        toast(includeFlights ? '날짜, 날씨, 항공을 함께 탐색 중입니다.' : '날짜와 날씨를 함께 탐색 중입니다.');
+        const payload = {
+          period: $('period').value.trim(),
+          nights: Number($('nights').value || 0),
+          destination: $('destination').value.trim(),
+          weekend: state.weekend,
+          max_candidates: Math.min(Number($('maxCandidates').value || 8), 8),
+          weather: $('weatherEnabled').checked,
+          lat: $('lat').value ? Number($('lat').value) : null,
+          lon: $('lon').value ? Number($('lon').value) : null,
+          include_flights: includeFlights,
+          flight_url: defaultSearchUrl('flight'),
+          flight_card_selector: DEFAULT_CARD_SELECTOR,
+          airline_priority: $('airlinePriority').value,
+          flight_candidates: 1,
+          save: true
+        };
+        const data = await requestJson('/research/run', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        state.lastResearch = data;
+        state.lastPayload = data.dates;
+        state.selectedCandidate = null;
+        $('selectedBadge').textContent = '없음';
+        $('routeDestination').textContent = payload.destination || '미정';
+        $('routeReturn').textContent = '미정';
+        $('rawJson').textContent = JSON.stringify(data, null, 2);
+        renderCandidates(data.dates);
+        renderFlightPayloads(data.flights);
+        scheduleDraftSave();
+        const phaseByName = Object.fromEntries((data.phases || []).map((phase) => [phase.name, phase]));
+        setPhaseStatus([
+          { value: `${(data.dates?.candidates || []).length}개 완료` },
+          { value: phaseByName.weather?.status === 'done' ? '병렬 완료' : (phaseByName.weather?.status || '건너뜀') },
+          { value: phaseByName.flights?.status === 'done' ? `${phaseByName.flights.items || 0}개 확인` : (phaseByName.flights?.reason || phaseByName.flights?.status || '건너뜀') }
+        ]);
+        loadArtifacts();
+        activeTab('dates');
+        await decidePlanStep({ activate: false });
+        toast('통합 탐색 완료');
+      } catch (error) {
+        setPhaseStatus([
+          { value: '오류' },
+          { value: '오류 또는 중단' },
+          { value: '오류 또는 중단' }
+        ]);
+        toast(error.message, true);
+      } finally {
+        setLoading(button, false);
+        setLoading($('recommendBtn'), false);
+      }
+    }
+
+    async function compareWeather() {
+      if (!state.selectedCandidate) {
+        toast('날짜 후보를 먼저 선택하세요.', true);
+        return;
+      }
+      const button = $('weatherBtn');
+      setLoading(button, true);
+      try {
+        applyDestinationCoordinates();
+        setPhaseStatus([
+          { value: '선택 날짜' },
+          { value: '날씨 가져오는 중', running: true },
+          { value: '대기' }
+        ]);
+        const data = await requestJson('/weather/history', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            departure_date: state.selectedCandidate.departure_date,
+            nights: state.selectedCandidate.nights,
+            lat: Number($('lat').value),
+            lon: Number($('lon').value),
+            years_back: 5
+          })
+        });
+        const weather = data.weather || {};
+        $('weatherTemp').textContent = weather.avg_temp_c == null ? '-' : `${weather.avg_temp_c}C`;
+        $('weatherRain').textContent = weather.avg_trip_precip_mm == null ? '-' : `${weather.avg_trip_precip_mm}mm`;
+        $('weatherSample').textContent = weather.sample_count == null ? '-' : `${weather.sample_count}년`;
+        $('weatherRaw').textContent = JSON.stringify(data, null, 2);
+        $('rawJson').textContent = JSON.stringify(data, null, 2);
+        setPhaseStatus([
+          { value: '선택 날짜' },
+          { value: '완료' },
+          { value: '대기' }
+        ]);
+        toast('날씨 비교 완료');
+      } catch (error) {
+        setPhaseStatus([
+          { value: '선택 날짜' },
+          { value: '오류' },
+          { value: '대기' }
+        ]);
+        toast(error.message, true);
+      } finally {
+        setLoading(button, false);
+      }
+    }
+
+    async function collectData() {
+      const button = $('collectBtn');
+      setLoading(button, true);
+      try {
+        applyDestinationCoordinates();
+        const selected = state.selectedCandidate || {};
+        const kind = $('collectKind').value;
+        const departDate = $('departureDate').value || selected.departure_date || '';
+        const returnDate = $('returnDate').value || selected.return_date || '';
+        if (!departDate || !returnDate) {
+          toast('먼저 날짜 후보를 선택하세요.', true);
+          return;
+        }
+        const data = await requestJson('/collect', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            kind,
+            url: defaultSearchUrl(kind),
+            destination: $('destination').value.trim(),
+            depart_date: departDate,
+            return_date: returnDate,
+            card_selector: DEFAULT_CARD_SELECTOR,
+            airline_priority: $('airlinePriority').value,
+            save: true
+          })
+        });
+        renderCollect(data);
+        loadArtifacts();
+        await decidePlanStep({ activate: false });
+        toast('후보 보기 완료');
+      } catch (error) {
+        toast(error.message, true);
+      } finally {
+        setLoading(button, false);
+      }
+    }
+
+    async function loadArtifacts() {
+      try {
+        const data = await requestJson('/artifacts');
+        const list = $('artifactList');
+        list.innerHTML = '';
+        if (!data.artifacts || data.artifacts.length === 0) {
+          list.innerHTML = '<div class="empty">저장된 계획이 없습니다.</div>';
+          return;
+        }
+        data.artifacts.slice().reverse().forEach((artifact) => {
+          const item = document.createElement('div');
+          item.className = 'artifact';
+          item.innerHTML = `<strong>${escapeHtml(artifactLabel(artifact.name))}</strong><span>${artifact.updated_at}</span>`;
+          item.addEventListener('click', async () => {
+            const detail = await requestJson(`/artifacts/${encodeURIComponent(artifact.name)}`);
+            $('rawJson').textContent = detail.data;
+            activeTab('raw');
+          });
+          list.appendChild(item);
+        });
+      } catch (error) {
+        toast(error.message, true);
+      }
+    }
+
+    async function checkHealth() {
+      try {
+        const data = await requestJson('/health');
+        $('serverStatus').textContent = data.status;
+      } catch (error) {
+        $('serverStatus').textContent = 'down';
+        toast(error.message, true);
+      }
+    }
+
+    function resetForm() {
+      clearDraft();
+      state.weekend = 'prefer';
+      state.selectedCandidate = null;
+      state.lastPayload = null;
+      state.lastCollect = null;
+      state.lastResearch = null;
+      state.flowDecision = null;
+      $('country').value = '';
+      $('destination').value = '';
+      $('period').value = '';
+      $('nights').value = 3;
+      $('maxCandidates').value = 31;
+      $('departureDate').value = '';
+      $('returnDate').value = '';
+      $('travelPurpose').value = '';
+      $('weatherEnabled').checked = true;
+      $('flightEnabled').checked = true;
+      $('airlinePriority').value = 'balanced';
+      $('flightStyle').value = 'direct';
+      $('flightConfirmed').checked = false;
+      $('flightDetails').value = '';
+      $('lodgingConfirmed').checked = false;
+      $('lodgingArea').value = '';
+      $('lodgingDetails').value = '';
+      $('lat').value = '33.5902';
+      $('lon').value = '130.4017';
+      $('selectedBadge').textContent = '없음';
+      $('routeDestination').textContent = '미정';
+      $('routeReturn').textContent = '미정';
+      $('weatherTemp').textContent = '-';
+      $('weatherRain').textContent = '-';
+      $('weatherSample').textContent = '-';
+      $('weatherRaw').textContent = '선택된 날짜가 필요합니다.';
+      $('rawJson').textContent = '아직 선택된 상세 정보가 없습니다.';
+      $('dateResults').innerHTML = '<div class="empty">날짜 후보를 만들면 여기에 표시됩니다.</div>';
+      $('collectResults').hidden = true;
+      $('collectResults').innerHTML = '';
+      setPhaseStatus([]);
+      document.querySelectorAll('.segment').forEach((item) => {
+        item.classList.toggle('active', item.dataset.value === 'prefer');
+      });
+      decidePlanStep({ activate: true }).catch(() => {});
+      toast('초기화 완료');
+    }
+
+    document.querySelectorAll('.segment').forEach((button) => {
+      button.addEventListener('click', () => {
+        state.weekend = button.dataset.value;
+        document.querySelectorAll('.segment').forEach((item) => item.classList.remove('active'));
+        button.classList.add('active');
+        scheduleDraftSave();
+        decidePlanStep({ activate: false }).catch(() => {});
+      });
+    });
+
+    document.querySelectorAll('.tab').forEach((button) => {
+      button.addEventListener('click', () => activeTab(button.dataset.tab));
+    });
+
+    $('planBtn').addEventListener('click', () => decidePlanStep({ activate: true }).catch(() => {}));
+    $('recommendBtn').addEventListener('click', recommendDates);
+    $('researchBtn').addEventListener('click', runIntegratedResearch);
+    $('weatherBtn').addEventListener('click', compareWeather);
+    $('collectBtn').addEventListener('click', collectData);
+    $('loadArtifactsBtn').addEventListener('click', loadArtifacts);
+    $('refreshArtifactsBtn').addEventListener('click', loadArtifacts);
+    $('resetBtn').addEventListener('click', resetForm);
+    const formFieldIds = [
+      'country',
+      'destination',
+      'period',
+      'nights',
+      'departureDate',
+      'returnDate',
+      'travelPurpose',
+      'airlinePriority',
+      'flightStyle',
+      'flightDetails',
+      'lodgingArea',
+      'lodgingDetails'
+    ];
+    formFieldIds.forEach((id) => {
+      $(id).addEventListener('input', () => {
+        if (id === 'destination') $('routeDestination').textContent = $('destination').value || '미정';
+        syncActualInfoFlags();
+        scheduleDraftSave();
+      });
+      $(id).addEventListener('change', () => {
+        if (id === 'destination') $('routeDestination').textContent = $('destination').value || '미정';
+        syncActualInfoFlags();
+        scheduleDraftSave();
+        decidePlanStep({ activate: false }).catch(() => {});
+      });
+    });
+
+    const restored = restoreDraft();
+    checkHealth();
+    loadArtifacts();
+    if (restored && state.lastPayload) renderCandidates(state.lastPayload);
+    decidePlanStep({ activate: true }).catch(() => {});
+  </script>
+</body>
+</html>

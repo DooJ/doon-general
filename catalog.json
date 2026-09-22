@@ -1,0 +1,105 @@
+{
+  "source_repository": "DooJ/Agentic_Base",
+  "source_commit": "da922ca7bc0a705ce524e5ea70d2bac3d14d3f70",
+  "repository": "DooJ/agentic-skills-general",
+  "visibility": "public",
+  "category": "범용·비개발 스킬",
+  "skills": [
+    {
+      "name": "content-strategist",
+      "path": ".agentic_base/skills/content-strategist"
+    },
+    {
+      "name": "design-generalist",
+      "path": ".agentic_base/skills/design-generalist"
+    },
+    {
+      "name": "design-system-curator",
+      "path": ".agentic_base/skills/design-system-curator"
+    },
+    {
+      "name": "information-architect",
+      "path": ".agentic_base/skills/information-architect"
+    },
+    {
+      "name": "interaction-designer",
+      "path": ".agentic_base/skills/interaction-designer"
+    },
+    {
+      "name": "living_doc_writer",
+      "path": ".agentic_base/skills/living_doc_writer"
+    },
+    {
+      "name": "product-planner",
+      "path": ".agentic_base/skills/product-planner"
+    },
+    {
+      "name": "project-legal-advisor",
+      "path": ".agentic_base/skills/project-legal-advisor"
+    },
+    {
+      "name": "pt-trainer",
+      "path": ".agentic_base/skills/pt-trainer"
+    },
+    {
+      "name": "real-estate-expert",
+      "path": ".agentic_base/skills/real-estate-expert"
+    },
+    {
+      "name": "refining-implemented-ui",
+      "path": ".agentic_base/skills/refining-implemented-ui"
+    },
+    {
+      "name": "requirements-analyst",
+      "path": ".agentic_base/skills/requirements-analyst"
+    },
+    {
+      "name": "service-guide-builder",
+      "path": ".agentic_base/skills/service-guide-builder"
+    },
+    {
+      "name": "snapshot_report_writer",
+      "path": ".agentic_base/skills/snapshot_report_writer"
+    },
+    {
+      "name": "stock-analyst",
+      "path": ".agentic_base/skills/stock-analyst"
+    },
+    {
+      "name": "travel-destination-research",
+      "path": ".agentic_base/skills/travel-destination-research"
+    },
+    {
+      "name": "travel-flight-search",
+      "path": ".agentic_base/skills/travel-flight-search"
+    },
+    {
+      "name": "travel-itinerary-builder",
+      "path": ".agentic_base/skills/travel-itinerary-builder"
+    },
+    {
+      "name": "travel-lodging-search",
+      "path": ".agentic_base/skills/travel-lodging-search"
+    },
+    {
+      "name": "travel-place-search",
+      "path": ".agentic_base/skills/travel-place-search"
+    },
+    {
+      "name": "travel-planner",
+      "path": ".agentic_base/skills/travel-planner"
+    },
+    {
+      "name": "travel-transport-search",
+      "path": ".agentic_base/skills/travel-transport-search"
+    },
+    {
+      "name": "ui-concept-director",
+      "path": ".agentic_base/skills/ui-concept-director"
+    },
+    {
+      "name": "ux-researcher",
+      "path": ".agentic_base/skills/ux-researcher"
+    }
+  ]
+}
