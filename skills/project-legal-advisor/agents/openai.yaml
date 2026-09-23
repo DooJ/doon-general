@@ -1,0 +1,4 @@
+interface:
+  display_name: "프로젝트 법률 리스크 자문"
+  short_description: "IT 프로젝트의 기술·약관·IP·개인정보 리스크 검토"
+  default_prompt: "Use $project-legal-advisor to analyze this project and prepare a source-backed Korean legal risk review."

@@ -1,0 +1,36 @@
+{
+  "name": "agentic-skills-general",
+  "version": "1.0.1",
+  "description": "DooN의 기획, 디자인, 문서화, 조사와 일상 업무를 담당하는 범용 스킬 모음입니다.",
+  "author": {
+    "name": "DooJ",
+    "url": "https://github.com/DooJ"
+  },
+  "repository": "https://github.com/DooJ/agentic-skills-general",
+  "keywords": [
+    "planning",
+    "design",
+    "research",
+    "writing",
+    "travel"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "DooN General",
+    "shortDescription": "기획·디자인·문서·조사 스킬",
+    "longDescription": "DooN의 기획, 디자인, 문서화, 조사와 일상 업무를 담당하는 범용 스킬 모음입니다.",
+    "developerName": "DooJ",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "새 제품 아이디어를 구체적인 계획으로 정리해줘",
+      "이 화면의 정보 구조와 사용 흐름을 개선해줘",
+      "자료를 조사해 실행 가능한 문서로 정리해줘"
+    ],
+    "brandColor": "#0F766E"
+  }
+}

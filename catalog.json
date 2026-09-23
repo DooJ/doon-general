@@ -7,99 +7,104 @@
   "skills": [
     {
       "name": "content-strategist",
-      "path": ".agentic_base/skills/content-strategist"
+      "path": "skills/content-strategist"
     },
     {
       "name": "design-generalist",
-      "path": ".agentic_base/skills/design-generalist"
+      "path": "skills/design-generalist"
     },
     {
       "name": "design-system-curator",
-      "path": ".agentic_base/skills/design-system-curator"
+      "path": "skills/design-system-curator"
     },
     {
       "name": "information-architect",
-      "path": ".agentic_base/skills/information-architect"
+      "path": "skills/information-architect"
     },
     {
       "name": "interaction-designer",
-      "path": ".agentic_base/skills/interaction-designer"
+      "path": "skills/interaction-designer"
     },
     {
       "name": "living_doc_writer",
-      "path": ".agentic_base/skills/living_doc_writer"
+      "path": "skills/living_doc_writer"
     },
     {
       "name": "product-planner",
-      "path": ".agentic_base/skills/product-planner"
+      "path": "skills/product-planner"
     },
     {
       "name": "project-legal-advisor",
-      "path": ".agentic_base/skills/project-legal-advisor"
+      "path": "skills/project-legal-advisor"
     },
     {
       "name": "pt-trainer",
-      "path": ".agentic_base/skills/pt-trainer"
+      "path": "skills/pt-trainer"
     },
     {
       "name": "real-estate-expert",
-      "path": ".agentic_base/skills/real-estate-expert"
+      "path": "skills/real-estate-expert"
     },
     {
       "name": "refining-implemented-ui",
-      "path": ".agentic_base/skills/refining-implemented-ui"
+      "path": "skills/refining-implemented-ui"
     },
     {
       "name": "requirements-analyst",
-      "path": ".agentic_base/skills/requirements-analyst"
+      "path": "skills/requirements-analyst"
     },
     {
       "name": "service-guide-builder",
-      "path": ".agentic_base/skills/service-guide-builder"
+      "path": "skills/service-guide-builder"
     },
     {
       "name": "snapshot_report_writer",
-      "path": ".agentic_base/skills/snapshot_report_writer"
+      "path": "skills/snapshot_report_writer"
     },
     {
       "name": "stock-analyst",
-      "path": ".agentic_base/skills/stock-analyst"
+      "path": "skills/stock-analyst"
     },
     {
       "name": "travel-destination-research",
-      "path": ".agentic_base/skills/travel-destination-research"
+      "path": "skills/travel-destination-research"
     },
     {
       "name": "travel-flight-search",
-      "path": ".agentic_base/skills/travel-flight-search"
+      "path": "skills/travel-flight-search"
     },
     {
       "name": "travel-itinerary-builder",
-      "path": ".agentic_base/skills/travel-itinerary-builder"
+      "path": "skills/travel-itinerary-builder"
     },
     {
       "name": "travel-lodging-search",
-      "path": ".agentic_base/skills/travel-lodging-search"
+      "path": "skills/travel-lodging-search"
     },
     {
       "name": "travel-place-search",
-      "path": ".agentic_base/skills/travel-place-search"
+      "path": "skills/travel-place-search"
     },
     {
       "name": "travel-planner",
-      "path": ".agentic_base/skills/travel-planner"
+      "path": "skills/travel-planner"
     },
     {
       "name": "travel-transport-search",
-      "path": ".agentic_base/skills/travel-transport-search"
+      "path": "skills/travel-transport-search"
     },
     {
       "name": "ui-concept-director",
-      "path": ".agentic_base/skills/ui-concept-director"
+      "path": "skills/ui-concept-director"
     },
     {
       "name": "ux-researcher",
-      "path": ".agentic_base/skills/ux-researcher"
+      "path": "skills/ux-researcher"
     }
-  ]
+  ],
+  "plugin": {
+    "name": "agentic-skills-general",
+    "version": "1.0.1",
+    "display_name": "DooN General"
+  }
 }

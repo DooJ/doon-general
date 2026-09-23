@@ -1,7 +1,38 @@
-# 범용·비개발 스킬
+<p align="center">
+  <img src="./assets/brand/doon-logo.svg" alt="DooN — DO:ON" width="720">
+</p>
 
-Agentic_Base의 범용·비개발 스킬 24개를 분리 보관한 저장소입니다. 현재 실행·동기화의 통합 원본은 `DooJ/Agentic_Base`이며, 이 저장소는 커밋 `da922ca7bc0a705ce524e5ea70d2bac3d14d3f70`의 스킬 스냅샷입니다.
+<p align="center"><strong>Turn broad ideas into useful, finished work.</strong></p>
 
-각 스킬은 `.agentic_base/skills/<이름>/`에 있습니다. `VERSION.md`에 버전·출처가 기록되어 있고, 외부 원문을 포함한 스킬의 개별 라이선스 파일은 함께 보존했습니다. 전체에 동일한 라이선스를 새로 부여하지 않습니다.
+<p align="center">
+  <img src="./assets/brand/doon-hero.png" alt="DooN General skill network" width="100%">
+</p>
 
-이 스킬들 중 일부는 Agentic_Base의 공통 규칙, 워크플로우 또는 스크립트를 참조합니다. 단독 실행 전에 해당 의존성을 확인하세요. 포함 목록과 원본 커밋은 `catalog.json`에서 확인할 수 있습니다.
+# DooN General
+
+**DooN General**은 기획, 디자인, 조사, 문서화와 일상 업무를 실행 가능한 결과로 연결하는 공개 Codex 플러그인입니다. 플러그인 전체와 내부 스킬을 각각 활성화할 수 있어 필요한 역할만 조합해 사용할 수 있습니다.
+
+## 포함된 영역
+
+| 영역 | 주요 스킬 |
+|---|---|
+| 제품 기획 | `product-planner`, `requirements-analyst`, `content-strategist` |
+| UX·정보 구조 | `ux-researcher`, `information-architect`, `interaction-designer` |
+| UI·디자인 시스템 | `ui-concept-director`, `design-generalist`, `design-system-curator`, `refining-implemented-ui` |
+| 문서와 서비스 안내 | `living_doc_writer`, `snapshot_report_writer`, `service-guide-builder` |
+| 조사와 전문 판단 | `stock-analyst`, `real-estate-expert`, `project-legal-advisor` |
+| 여행 | `travel-planner`와 항공·숙박·장소·교통·일정 조사 스킬 |
+| 개인 활동 | `pt-trainer` |
+
+## 동작 방식
+
+요청의 목적과 필요한 결과물을 먼저 정리한 뒤, 적합한 전문 스킬이 조사·구조화·작성·검토를 맡습니다. 여러 스킬이 함께 쓰일 때도 각 역할의 입력과 산출물을 분리해 결과가 어디에서 만들어졌는지 추적할 수 있게 합니다.
+
+## 구조
+
+- `.codex-plugin/plugin.json`: 플러그인 메타데이터와 `skills/` 등록
+- `skills/<이름>/`: 실제 스킬 원본, 버전, references, scripts, assets
+- `catalog.json`: 저장소와 스킬 소유권을 확인하는 카탈로그
+- `PLUGIN_VERSION.md`: 플러그인 단위 변경 이력과 출처
+
+각 스킬의 버전과 출처는 해당 폴더의 `VERSION.md`에서 관리합니다. 외부 원문을 포함한 스킬의 개별 라이선스도 함께 보존합니다.
