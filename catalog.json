@@ -1,7 +1,7 @@
 {
-  "source_repository": "DooJ/Agentic_Base",
+  "source_repository": "DooJ/doon-core",
   "source_commit": "da922ca7bc0a705ce524e5ea70d2bac3d14d3f70",
-  "repository": "DooJ/agentic-skills-general",
+  "repository": "DooJ/doon-general",
   "visibility": "public",
   "category": "범용·비개발 스킬",
   "skills": [
@@ -103,8 +103,8 @@
     }
   ],
   "plugin": {
-    "name": "agentic-skills-general",
-    "version": "1.0.1",
+    "name": "doon-general",
+    "version": "2.0.0",
     "display_name": "DooN General"
   }
 }
