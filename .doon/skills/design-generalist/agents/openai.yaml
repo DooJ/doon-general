@@ -1,5 +1,0 @@
-interface:
-  display_name: "Design Generalist"
-  short_description: "웹과 앱 전반의 범용 디자인 전략과 실행 가이드"
-  brand_color: "#0F766E"
-  default_prompt: "Use $design-generalist to define a reusable design direction, critique UX risks, and produce implementation-ready guidance for web, mobile, dashboard, or brand surfaces."

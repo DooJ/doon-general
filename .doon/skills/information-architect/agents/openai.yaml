@@ -1,4 +1,0 @@
-interface:
-  display_name: "Information Architect"
-  short_description: "정보 구조와 내비게이션 기준을 설계합니다."
-  default_prompt: "Use $information-architect to organize this product into an IA, sitemap, and navigation model."

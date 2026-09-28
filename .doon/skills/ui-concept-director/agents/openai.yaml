@@ -1,4 +1,0 @@
-interface:
-  display_name: "UI Concept Director"
-  short_description: "화면 목적에서 출발해 레퍼런스 기반 UI/UX 초안과 반복 개선 방향을 잡는 스킬"
-  default_prompt: "Use $ui-concept-director to turn a screen goal into reference-backed UI/UX directions, a first draft layout, and iterative critique without creating DESIGN.md."

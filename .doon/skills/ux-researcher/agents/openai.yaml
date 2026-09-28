@@ -1,4 +1,0 @@
-interface:
-  display_name: "UX Researcher"
-  short_description: "사용자 가설과 리서치 계획을 설계합니다."
-  default_prompt: "Use $ux-researcher to design research questions and a validation plan for this product idea."

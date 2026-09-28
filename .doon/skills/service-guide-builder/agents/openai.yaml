@@ -1,4 +1,0 @@
-interface:
-  display_name: "서비스 가이드 빌더"
-  short_description: "실제 화면과 코드 기반 인터랙티브 서비스 가이드 작성"
-  default_prompt: "기존 서비스의 실제 화면과 코드, 리소스 문자열을 근거로 클릭형 웹 가이드 페이지를 만들어줘."

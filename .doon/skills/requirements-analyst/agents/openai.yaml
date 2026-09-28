@@ -1,4 +1,0 @@
-interface:
-  display_name: "Requirements Analyst"
-  short_description: "요구사항과 검증 가능한 기준을 정리합니다."
-  default_prompt: "Use $requirements-analyst to break this feature into requirements, edge cases, and acceptance criteria."

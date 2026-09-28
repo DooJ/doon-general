@@ -1,4 +1,0 @@
-interface:
-  display_name: "Product Planner"
-  short_description: "제품 기획과 MVP 범위 기준을 정리합니다."
-  default_prompt: "Use $product-planner to turn this product idea into a problem statement, MVP scope, and success criteria."

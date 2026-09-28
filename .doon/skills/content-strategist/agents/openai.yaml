@@ -1,4 +1,0 @@
-interface:
-  display_name: "Content Strategist"
-  short_description: "제품 문구와 마이크로카피 기준을 설계합니다."
-  default_prompt: "Use $content-strategist to define the product voice, microcopy patterns, and error messages."
