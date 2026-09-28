@@ -10,7 +10,7 @@
 
 # DooN General
 
-**DooN General**은 기획, 디자인, 조사, 문서화와 일상 업무를 실행 가능한 결과로 연결하는 공개 Codex 플러그인입니다. 플러그인 전체와 내부 스킬을 각각 활성화할 수 있어 필요한 역할만 조합해 사용할 수 있습니다.
+**DooN General**은 기획, 디자인, 조사, 문서화와 일상 업무를 실행 가능한 결과로 연결하는 공개 Codex·Claude Code 플러그인입니다. 플러그인 전체와 내부 스킬을 각각 활성화할 수 있어 필요한 역할만 조합해 사용할 수 있습니다.
 
 ## 포함된 영역
 
@@ -31,6 +31,7 @@
 ## 구조
 
 - `.codex-plugin/plugin.json`: 플러그인 메타데이터와 `skills/` 등록
+- `.claude-plugin/plugin.json`: Claude Code 네이티브 플러그인 메타데이터
 - `skills/<이름>/`: 실제 스킬 원본, 버전, references, scripts, assets
 - `catalog.json`: 저장소와 스킬 소유권을 확인하는 카탈로그
 - `PLUGIN_VERSION.md`: 플러그인 단위 변경 이력과 출처
