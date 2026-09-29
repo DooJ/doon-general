@@ -1,6 +1,6 @@
 {
-  "source_repository": "DooJ/doon-core",
-  "source_commit": "da922ca7bc0a705ce524e5ea70d2bac3d14d3f70",
+  "origin_repository": "DooJ/doon-core",
+  "origin_commit": "da922ca7bc0a705ce524e5ea70d2bac3d14d3f70",
   "repository": "DooJ/doon-general",
   "visibility": "public",
   "category": "범용·비개발 스킬",
@@ -26,7 +26,7 @@
       "path": "skills/interaction-designer"
     },
     {
-      "name": "living_doc_writer",
+      "name": "living-doc-writer",
       "path": "skills/living_doc_writer"
     },
     {
@@ -58,7 +58,7 @@
       "path": "skills/service-guide-builder"
     },
     {
-      "name": "snapshot_report_writer",
+      "name": "snapshot-report-writer",
       "path": "skills/snapshot_report_writer"
     },
     {
@@ -102,9 +102,57 @@
       "path": "skills/ux-researcher"
     }
   ],
+  "runtime_contract": {
+    "default": "portable",
+    "overrides": {}
+  },
+  "groups": [
+    {
+      "id": "product-design-docs",
+      "label": "제품·디자인·문서",
+      "skills": [
+        "content-strategist",
+        "design-generalist",
+        "design-system-curator",
+        "information-architect",
+        "interaction-designer",
+        "living-doc-writer",
+        "product-planner",
+        "refining-implemented-ui",
+        "requirements-analyst",
+        "service-guide-builder",
+        "snapshot-report-writer",
+        "ui-concept-director",
+        "ux-researcher"
+      ]
+    },
+    {
+      "id": "travel",
+      "label": "여행",
+      "skills": [
+        "travel-destination-research",
+        "travel-flight-search",
+        "travel-itinerary-builder",
+        "travel-lodging-search",
+        "travel-place-search",
+        "travel-planner",
+        "travel-transport-search"
+      ]
+    },
+    {
+      "id": "advisory",
+      "label": "전문 생활 영역",
+      "skills": [
+        "project-legal-advisor",
+        "pt-trainer",
+        "real-estate-expert",
+        "stock-analyst"
+      ]
+    }
+  ],
   "plugin": {
     "name": "doon-general",
-    "version": "3.1.0",
+    "version": "3.2.0",
     "display_name": "DooN General"
   }
 }

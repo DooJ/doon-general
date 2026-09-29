@@ -14,7 +14,7 @@ description: "화면 목적과 사용 맥락을 바탕으로 새 UI/UX 방향을
 - 사용자의 화면 목적을 듣고 핵심 행동, 정보 우선순위, 플랫폼 맥락을 빠르게 구조화합니다.
 - 현재 프로젝트의 기존 UI, CSS, 컴포넌트, 스크린샷이 있으면 먼저 읽고 연속성을 확인합니다.
 - 기존 기준이 부족하면 공개 디자인 시스템, 제품 유형별 패턴, 도메인 관습, 플랫폼 가이드를 레퍼런스 후보로 삼습니다.
-- 플랫폼 선택과 샘플 레퍼런스가 필요하면 `../design-generalist/references/platform_reference_matrix.md`를 읽고, 웹 작업은 `.doon/rules/05_web_design_rules.md`, 앱 작업은 `.doon/rules/06_app_design_rules.md`를 함께 적용합니다.
+- 플랫폼 선택과 샘플 레퍼런스가 필요하면 `../design-generalist/references/platform_reference_matrix.md`를 읽습니다. 웹과 앱의 세부 플랫폼 규칙은 DooN Core가 연결되어 있을 때 추가로 적용합니다.
 - 레퍼런스 후보는 목적별로 나눕니다. Mobbin은 실제 앱/Web App flow, Awwwards는 브랜드 웹과 인터랙션, Dribbble은 컴포넌트/비주얼 polish, Behance는 UX case study와 브랜딩 프로세스, Land-book은 SaaS/AI/스타트업 랜딩 구조를 볼 때 우선합니다.
 - 레퍼런스는 복제 대상이 아니라 **판단 재료**로 사용합니다. 색상만 베끼지 말고 정보 밀도, 레이아웃 흐름, 컴포넌트 선택, 상호작용 태도까지 해석합니다.
 - 레퍼런스를 실제로 검색하거나 특정 화면/케이스를 근거로 삼으면 `../design-generalist/references/reference_evidence_log.md` 기준으로 검색어, URL/title, 관찰 요소, 반영/배제 결정을 남깁니다.

@@ -3,7 +3,7 @@ name: requirements-analyst
 description: "PRD, 기능 요구사항, 비기능 요구사항, 사용자 시나리오, 예외/오류 흐름, 정책, 권한, acceptance criteria, QA 연결 기준을 정리할 때 사용합니다. 사용자가 '요구사항 정의해줘', 'PRD 작성해줘', '기능 명세로 쪼개줘', 'acceptance criteria 만들어줘', '예외 케이스 정리해줘', 'QA 가능한 요구사항으로 바꿔줘'라고 요청할 때 사용합니다."
 ---
 # Requirements Analyst
-- 먼저 `.doon/rules/03_planning_rules.md`를 따릅니다.
+- DooN Core가 연결되어 있으면 공통 기획 규칙을 함께 적용합니다. 독립 설치에서는 이 스킬의 요구사항·정책·검증 계약만으로 진행합니다.
 - 제품 목표나 MVP가 아직 불명확하면 `../product-planner/SKILL.md`를 먼저 사용합니다.
 - 화면 구조나 인터랙션 세부가 필요하면 `../information-architect/SKILL.md` 또는 `../interaction-designer/SKILL.md`로 연결합니다.
 

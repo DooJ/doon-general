@@ -1,6 +1,6 @@
 # DooN General 플러그인 버전
 
-현재 버전: `v3.1.0`
+현재 버전: `v3.2.0`
 
 ## 출처
 
@@ -16,10 +16,13 @@
 
 | `P7` | 자체 생성 | 2026-09-28 사용자 승인 DooN Core 통합 설계 | 개별 플러그인의 `.doon` 의존 제거, portable manifest와 Core export 계약 |
 
+| `P8` | 자체 생성 | 2026-09-29 사용자 요청 | canonical 스킬 ID, 그룹, 실행 계약, 독립 설치 경로와 플러그인 설명 정리 |
+
 ## 버전 이력
 
 | 버전 | 날짜 | 변경 요약 | 출처 ID |
 |---|---|---|---|
+| `v3.2.0` | 2026-09-29 | 스킬 그룹과 portable 계약을 명시하고 catalog ID 및 Core 선택 의존을 정리했다. | `P8` |
 | `v3.1.0` | 2026-09-28 | Core 없이 독립 설치할 수 있도록 portable manifest를 추가하고 플러그인 내부의 legacy `.doon` 복제 구조를 제거했다. | `P7` |
 | `v3.0.0` | 2026-09-28 | canonical 내부 경로를 `.doon`으로 전환하고 Claude Code 네이티브 플러그인 manifest를 추가했다. | `P5`, `P6` |
 | `v2.0.0` | 2026-09-24 | plugin ID와 저장소 식별자를 `doon-general`과 `DooJ/doon-core` 체계로 전환했다. 기존 설치와 구분되는 breaking 변경이다. | `P4` |

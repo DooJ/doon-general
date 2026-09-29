@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "doon-general",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "DooN의 기획, 디자인, 문서화, 조사와 일상 업무를 담당하는 범용 스킬 모음입니다.",
   "author": {
     "name": "DooJ",

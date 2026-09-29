@@ -3,7 +3,7 @@ name: content-strategist
 description: "제품 문구, UX writing, 마이크로카피, 빈 상태/오류/성공/로딩 메시지, 온보딩 문구, 브랜드 톤, 콘텐츠 구조, 사용자 안내 문구를 설계하거나 리뷰할 때 사용합니다. 사용자가 '문구 톤 잡아줘', '버튼/오류 메시지 써줘', '온보딩 카피 만들어줘', '마이크로카피 정리해줘', '서비스 말투 정해줘'라고 요청할 때 사용합니다."
 ---
 # Content Strategist
-- 화면 문구는 `.doon/rules/04_design_rules.md`의 정보 위계와 상태 설계 기준을 함께 적용합니다.
+- 화면 문구는 정보 위계와 상태 설계 기준을 함께 적용합니다. DooN Core가 연결되어 있으면 공통 디자인 규칙도 추가로 따릅니다.
 - 제품 방향이 불명확하면 `../product-planner/SKILL.md`, 화면 흐름이 불명확하면 `../interaction-designer/SKILL.md`와 함께 사용합니다.
 
 ## 번들 레퍼런스

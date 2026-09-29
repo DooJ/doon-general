@@ -19,7 +19,7 @@
 | 제품 기획 | `product-planner`, `requirements-analyst`, `content-strategist` |
 | UX·정보 구조 | `ux-researcher`, `information-architect`, `interaction-designer` |
 | UI·디자인 시스템 | `ui-concept-director`, `design-generalist`, `design-system-curator`, `refining-implemented-ui` |
-| 문서와 서비스 안내 | `living_doc_writer`, `snapshot_report_writer`, `service-guide-builder` |
+| 문서와 서비스 안내 | `living-doc-writer`, `snapshot-report-writer`, `service-guide-builder` |
 | 조사와 전문 판단 | `stock-analyst`, `real-estate-expert`, `project-legal-advisor` |
 | 여행 | `travel-planner`와 항공·숙박·장소·교통·일정 조사 스킬 |
 | 개인 활동 | `pt-trainer` |
@@ -27,6 +27,8 @@
 ## 동작 방식
 
 요청의 목적과 필요한 결과물을 먼저 정리한 뒤, 적합한 전문 스킬이 조사·구조화·작성·검토를 맡습니다. 여러 스킬이 함께 쓰일 때도 각 역할의 입력과 산출물을 분리해 결과가 어디에서 만들어졌는지 추적할 수 있게 합니다.
+
+제품·디자인·문서 스킬을 기본 영역으로 두고, 여행과 전문 생활 영역은 필요한 스킬만 선택해 활성화하는 구성을 권장합니다. 모든 스킬은 Core 없이 동작하며, DooN Core가 연결된 경우 공통 규칙을 추가로 적용합니다.
 
 ## 구조
 
