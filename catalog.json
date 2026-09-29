@@ -56,8 +56,8 @@
       "path": "skills/service-guide-builder"
     },
     {
-      "name": "skill-versioning",
-      "path": "skills/skill-versioning"
+      "name": "general-skill-versioning",
+      "path": "skills/general-skill-versioning"
     },
     {
       "name": "snapshot-report-writer",
@@ -155,13 +155,13 @@
       "id": "maintenance",
       "label": "플러그인 유지관리",
       "skills": [
-        "skill-versioning"
+        "general-skill-versioning"
       ]
     }
   ],
   "plugin": {
     "name": "doon-general",
-    "version": "4.1.0",
+    "version": "4.1.1",
     "display_name": "DooN General"
   }
 }
