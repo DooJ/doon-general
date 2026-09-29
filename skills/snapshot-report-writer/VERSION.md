@@ -1,4 +1,4 @@
-# snapshot_report_writer 버전·출처
+# snapshot-report-writer 버전·출처
 
 현재 버전: `v1.0.0`
 내용 SHA-256: `sha256:68f2909e06286aff8894475d6fd9dce044108c18f5f82f92ae3b94fb6bc1a917`
