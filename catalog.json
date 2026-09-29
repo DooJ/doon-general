@@ -1,6 +1,4 @@
 {
-  "origin_repository": "DooJ/doon-core",
-  "origin_commit": "da922ca7bc0a705ce524e5ea70d2bac3d14d3f70",
   "repository": "DooJ/doon-general",
   "visibility": "public",
   "category": "범용·비개발 스킬",
@@ -56,6 +54,10 @@
     {
       "name": "service-guide-builder",
       "path": "skills/service-guide-builder"
+    },
+    {
+      "name": "skill-versioning",
+      "path": "skills/skill-versioning"
     },
     {
       "name": "snapshot-report-writer",
@@ -148,11 +150,18 @@
         "real-estate-expert",
         "stock-analyst"
       ]
+    },
+    {
+      "id": "maintenance",
+      "label": "플러그인 유지관리",
+      "skills": [
+        "skill-versioning"
+      ]
     }
   ],
   "plugin": {
     "name": "doon-general",
-    "version": "4.0.0",
+    "version": "4.1.0",
     "display_name": "DooN General"
   }
 }

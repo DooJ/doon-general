@@ -1,0 +1,20 @@
+{
+  "name": "doon-general",
+  "interface": {
+    "displayName": "DooN General"
+  },
+  "plugins": [
+    {
+      "name": "doon-general",
+      "source": {
+        "source": "local",
+        "path": "."
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

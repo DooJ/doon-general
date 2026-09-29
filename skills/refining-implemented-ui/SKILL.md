@@ -1,6 +1,6 @@
 ---
 name: refining-implemented-ui
-description: "Use when a web or app product already has a first-pass UI and core functions, and the user wants a source- and data-grounded UI/UX improvement review with mock reconstruction, revision history, an integrated final reference, and post-implementation parity verification."
+description: "Use when a web or app product already has a first-pass UI and key functions, and the user wants a source- and data-grounded UI/UX improvement review with mock reconstruction, revision history, an integrated final reference, and post-implementation parity verification."
 ---
 
 # Refining Implemented UI
@@ -25,11 +25,11 @@ description: "Use when a web or app product already has a first-pass UI and core
 
 ## 관련 규칙과 스킬
 
-- 사용자 행동, 정보 위계, 상태, 접근성, 구현 가능성을 항상 적용한다. DooN Core가 연결되어 있으면 공통 디자인 규칙도 함께 사용한다.
-- 웹은 `05_web_design_rules.md`, 모바일·태블릿 앱은 `06_app_design_rules.md`를 추가로 적용한다.
+- 사용자 행동, 정보 위계, 상태, 접근성, 구현 가능성을 항상 적용한다.
+- 웹은 브라우저·키보드·반응형 기준을, 모바일·태블릿 앱은 safe area·touch target·system navigation 기준을 추가로 적용한다.
 - 현재 구조가 불명확하면 먼저 `feature-analyzer`로 화면·라우트·데이터 흐름을 파악한다.
 - 화면 목록과 내비게이션 재구성이 핵심이면 `information-architect`, 상태 전이가 핵심이면 `interaction-designer`, 세부 디자인 판단과 handoff에는 `design-generalist`를 필요한 범위만 연결한다.
-- 사용자가 독립 팀원, 교차 검토, 하네스 진행을 명시했고 DooN Core가 연결된 경우에만 `huggies`와 디자인 리뷰 프로토콜을 연결한다. 실제 팀원이 없으면 사람 이름의 의견을 꾸며내지 말고 `정보 구조`, `인터랙션`, `시각 완성도` 같은 전문 렌즈로 표시한다.
+- 사용자가 독립 팀원, 교차 검토, 하네스 진행을 명시하고 해당 기능을 사용할 수 있을 때만 디자인 리뷰 프로토콜을 연결한다. 실제 팀원이 없으면 사람 이름의 의견을 꾸며내지 말고 `정보 구조`, `인터랙션`, `시각 완성도` 같은 전문 렌즈로 표시한다.
 
 ## 시작 전 확인
 

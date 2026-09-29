@@ -5,7 +5,7 @@ description: "선택된 제품 디자인 방향을 화면 구조, 시각 위계,
 
 # Design Generalist
 
-- 모든 디자인 작업은 사용자 행동, 정보 위계, 상태, 접근성, 구현 가능성을 기본 기준으로 삼습니다. DooN Core가 연결되어 있으면 공통 디자인 규칙도 함께 적용합니다.
+- 모든 디자인 작업은 사용자 행동, 정보 위계, 상태, 접근성, 구현 가능성을 기본 기준으로 삼습니다.
 - 브라우저 기반 웹 앱, SaaS, 대시보드, 관리자 도구, 랜딩, 콘텐츠 사이트는 브라우저·키보드·반응형 기준을 추가합니다.
 - iOS, Android, cross-platform, mobile web, tablet 앱은 safe area, touch target, keyboard, system navigation 기준을 추가합니다.
 - 기존 제품, 코드베이스, 브랜드 자산이 있으면 새로운 취향을 덮어씌우지 말고 현재 언어를 읽고 확장합니다.

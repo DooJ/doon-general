@@ -1,0 +1,14 @@
+{
+  "name": "doon-general",
+  "description": "DooN General plugin marketplace",
+  "owner": {
+    "name": "DooJ"
+  },
+  "plugins": [
+    {
+      "name": "doon-general",
+      "source": ".",
+      "description": "기획, 디자인, 문서화, 조사와 일상 업무를 담당하는 범용 스킬 모음입니다."
+    }
+  ]
+}
