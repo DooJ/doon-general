@@ -50,62 +50,26 @@
 
 ## 설치와 설정
 
-### Codex 설치
-
-저장소를 clone하고 포함된 marketplace를 등록한 뒤 플러그인을 설치합니다.
-
 ```bash
 git clone https://github.com/DooJ/doon-general.git
 cd doon-general
-codex plugin marketplace add .
-codex plugin add doon-general@doon-general
+bash scripts/plugin.sh install
 ```
 
-### Claude Code 설치
+관리 스크립트가 컴퓨터에 설치된 Codex, Claude Code, Antigravity를 자동으로 찾아 각각 필요한 형식으로 설치합니다. 설치되지 않은 에이전트는 건너뜁니다.
 
-같은 checkout에서 Claude용 marketplace와 플러그인을 설치합니다.
+### 관리 명령
 
-```bash
-claude plugin marketplace add . --scope user
-claude plugin install doon-general@doon-general --scope user
-```
+| 목적 | 명령 |
+|---|---|
+| 설치·에이전트 설정 | `bash scripts/plugin.sh install` |
+| 설정 다시 적용 | `bash scripts/plugin.sh setup` |
+| Git과 모든 에이전트 최신화 | `bash scripts/plugin.sh update` |
+| 현재 파일로 설치 복구 | `bash scripts/plugin.sh repair` |
+| 패키지·버전·테스트 검증 | `bash scripts/plugin.sh test` |
+| Git·에이전트 상태 확인 | `bash scripts/plugin.sh status` |
 
-### Antigravity 설치
-
-저장소의 스킬과 리소스를 Antigravity 전용 패키지로 만든 뒤 설치합니다. 루트의 portable `plugin.json`과 Antigravity manifest의 형식이 다르므로 생성된 패키지를 설치해야 합니다.
-
-```bash
-python3 scripts/build_antigravity_plugin.py
-agy plugin install .build/antigravity/doon-general
-agy plugin list
-```
-
-설치 후에는 새 Codex, Claude Code 또는 Antigravity 세션을 시작합니다.
-
-### 개발·시험
-
-Claude Code에서는 설치하지 않고 현재 checkout을 한 세션에서 바로 시험할 수도 있습니다.
-
-```bash
-claude plugin validate .
-claude --plugin-dir "$PWD"
-```
-
-`--plugin-dir`는 해당 Claude 세션에만 적용됩니다.
-
-### 최신화
-
-```bash
-git pull
-codex plugin marketplace upgrade doon-general
-codex plugin add doon-general@doon-general
-claude plugin marketplace update doon-general
-claude plugin update doon-general@doon-general --scope user
-python3 scripts/build_antigravity_plugin.py
-agy plugin install .build/antigravity/doon-general
-```
-
-사용하지 않는 CLI의 명령은 생략할 수 있습니다. 갱신 후에는 새 세션을 시작합니다.
+특정 에이전트를 제외하려면 설치·설정·최신화·복구 명령에 `--skip-codex`, `--skip-claude`, `--skip-antigravity`를 붙입니다. 적용 후에는 해당 에이전트의 새 세션을 시작합니다.
 
 ## 구조
 
@@ -113,6 +77,7 @@ agy plugin install .build/antigravity/doon-general
 - `.claude-plugin/plugin.json`: Claude Code 네이티브 플러그인 메타데이터
 - `antigravity/plugin.json`: Antigravity 전용 manifest
 - `scripts/build_antigravity_plugin.py`: 설치 가능한 Antigravity 패키지 생성기
+- `scripts/plugin.sh`: 설치, 설정, 최신화, 복구, 테스트 통합 명령
 - `skills/<이름>/`: 실제 스킬 원본, 버전, references, scripts, assets
 - `catalog.json`: 저장소와 스킬 소유권을 확인하는 카탈로그
 - `PLUGIN_VERSION.md`: 플러그인 단위 변경 이력과 출처
