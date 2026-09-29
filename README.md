@@ -10,7 +10,7 @@
 
 # DooN General
 
-**DooN General**은 기획, 디자인, 조사, 문서화와 일상 업무를 실행 가능한 결과로 연결하는 공개 Codex·Claude Code 플러그인입니다. 플러그인 전체와 내부 스킬을 각각 활성화할 수 있어 필요한 역할만 조합해 사용할 수 있습니다.
+**DooN General**은 기획, 디자인, 조사, 문서화와 일상 업무를 실행 가능한 결과로 연결하는 공개 Codex·Claude Code·Antigravity 플러그인입니다. 플러그인 전체와 내부 스킬을 각각 활성화할 수 있어 필요한 역할만 조합해 사용할 수 있습니다.
 
 ## 포함된 스킬
 
@@ -70,7 +70,17 @@ claude plugin marketplace add . --scope user
 claude plugin install doon-general@doon-general --scope user
 ```
 
-설치 후에는 새 Codex 또는 Claude Code 세션을 시작합니다.
+### Antigravity 설치
+
+저장소의 스킬과 리소스를 Antigravity 전용 패키지로 만든 뒤 설치합니다. 루트의 portable `plugin.json`과 Antigravity manifest의 형식이 다르므로 생성된 패키지를 설치해야 합니다.
+
+```bash
+python3 scripts/build_antigravity_plugin.py
+agy plugin install .build/antigravity/doon-general
+agy plugin list
+```
+
+설치 후에는 새 Codex, Claude Code 또는 Antigravity 세션을 시작합니다.
 
 ### 개발·시험
 
@@ -91,6 +101,8 @@ codex plugin marketplace upgrade doon-general
 codex plugin add doon-general@doon-general
 claude plugin marketplace update doon-general
 claude plugin update doon-general@doon-general --scope user
+python3 scripts/build_antigravity_plugin.py
+agy plugin install .build/antigravity/doon-general
 ```
 
 사용하지 않는 CLI의 명령은 생략할 수 있습니다. 갱신 후에는 새 세션을 시작합니다.
@@ -99,6 +111,8 @@ claude plugin update doon-general@doon-general --scope user
 
 - `.codex-plugin/plugin.json`: 플러그인 메타데이터와 `skills/` 등록
 - `.claude-plugin/plugin.json`: Claude Code 네이티브 플러그인 메타데이터
+- `antigravity/plugin.json`: Antigravity 전용 manifest
+- `scripts/build_antigravity_plugin.py`: 설치 가능한 Antigravity 패키지 생성기
 - `skills/<이름>/`: 실제 스킬 원본, 버전, references, scripts, assets
 - `catalog.json`: 저장소와 스킬 소유권을 확인하는 카탈로그
 - `PLUGIN_VERSION.md`: 플러그인 단위 변경 이력과 출처

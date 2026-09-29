@@ -1,0 +1,5 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "doon-general",
+  "description": "기획, 디자인, 문서화, 조사와 일상 업무를 위한 범용 Agent Skills 모음입니다."
+}

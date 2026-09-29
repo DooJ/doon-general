@@ -161,7 +161,7 @@
   ],
   "plugin": {
     "name": "doon-general",
-    "version": "4.1.1",
+    "version": "4.2.0",
     "display_name": "DooN General"
   }
 }
