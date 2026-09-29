@@ -27,7 +27,8 @@ description: "Use when a web or app product already has a first-pass UI and key 
 
 - 사용자 행동, 정보 위계, 상태, 접근성, 구현 가능성을 항상 적용한다.
 - 웹은 브라우저·키보드·반응형 기준을, 모바일·태블릿 앱은 safe area·touch target·system navigation 기준을 추가로 적용한다.
-- 현재 구조가 불명확하면 먼저 `feature-analyzer`로 화면·라우트·데이터 흐름을 파악한다.
+- 현재 구조가 불명확하면 `codebase.fact-map` capability를 먼저 해결한다. 선호 제공자는 `feature-analyzer`다. 발견되면 적용하고, 없으면 route/navigation, component, state/data source를 이 스킬의 Evidence 단계에서 직접 추적해 `inline_fact_map`으로 남긴다.
+- 직접 추적으로 근거 맵을 완성할 수 없으면 `partial: fact_map_unavailable`로 중단한다. 이름이 비슷한 코드 리뷰·디자인 스킬을 사실 지도 대체제로 간주하거나 근거 없는 기준본을 만들지 않는다.
 - 화면 목록과 내비게이션 재구성이 핵심이면 `information-architect`, 상태 전이가 핵심이면 `interaction-designer`, 세부 디자인 판단과 handoff에는 `design-generalist`를 필요한 범위만 연결한다.
 - 사용자가 독립 팀원, 교차 검토, 하네스 진행을 명시하고 해당 기능을 사용할 수 있을 때만 디자인 리뷰 프로토콜을 연결한다. 실제 팀원이 없으면 사람 이름의 의견을 꾸며내지 말고 `정보 구조`, `인터랙션`, `시각 완성도` 같은 전문 렌즈로 표시한다.
 

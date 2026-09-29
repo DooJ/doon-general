@@ -21,7 +21,12 @@ description: "Use when 사용자가 개발 중인 앱·웹·AI·플랫폼·자�
 
 ## 1. 프로젝트 사실 지도
 
-**REQUIRED SUB-SKILL:** `feature-analyzer`를 사용한다. 요구사항이나 운영 정책이 코드와 다르거나 비어 있으면 `requirements-analyst`를 추가한다.
+필요한 capability는 `codebase.fact-map`이다. 현재 환경에서 이 capability를 제공하는 스킬을 먼저 찾고, 발견되면 그 계약을 적용한다.
+
+- 선호 제공자는 `feature-analyzer`다.
+- `feature-analyzer`가 없으면 이름이 비슷한 스킬을 바로 호출하지 않는다. 코드·설정·문서·테스트를 직접 조사해 아래 사실 지도 형식과 근거 기준을 충족하는 `inline_fact_map`을 만든다.
+- 직접 조사할 저장소나 자료에 접근할 수 없어 사실 지도를 만들 수 없으면 법률 결론을 강하게 단정하지 않는다. `partial: fact_map_unavailable`로 표시하고 필요한 자료와 다음 행동을 반환한다.
+- 요구사항이나 운영 정책이 코드와 다르거나 비어 있으면 `requirements-analyst`가 발견될 때만 보조 제공자로 사용한다. 없으면 차이를 `unresolved_policy_gap`으로 남긴다.
 
 `Legal-Tech 분석 파트너` 관점에서 코드·설정·문서에서 확인한 사실을 다음 순서로 정리한다.
 
@@ -82,10 +87,11 @@ description: "Use when 사용자가 개발 중인 앱·웹·AI·플랫폼·자�
 
 ## 4. 문서화와 인계
 
-사용자가 프로젝트 전체 검토나 문서화를 요청하면 `snapshot-report-writer`를 사용해 `results/legal/<YYYYMMDD>_<project-slug>_legal-risk-review.md`에 시점 보고서를 작성한다. `references/legal-review-template.md`를 읽고 구조를 따른다.
+사용자가 프로젝트 전체 검토나 문서화를 요청하면 필요한 capability를 `document.snapshot-report`로 선언한다. 선호 제공자는 `snapshot-report-writer`이며, 발견되면 `results/legal/<YYYYMMDD>_<project-slug>_legal-risk-review.md`에 시점 보고서를 작성한다. `references/legal-review-template.md`를 읽고 구조를 따른다.
 
 - 짧은 질문이나 답변만 요청한 경우에는 파일을 만들지 않는다.
-- 계속 관리할 준수 의무 목록을 별도로 요청한 경우에만 `living-doc-writer`로 `docs/` 문서를 만든다.
+- 선호 제공자가 없으면 같은 시점 보고서 계약을 충족하는 다른 제공자를 찾는다. 동등한 제공자가 없으면 채팅에 `snapshot_report_handoff`로 대상 경로, 기준일, 필수 섹션, 근거, 미확인 사항을 구조화해 반환하고 파일을 임의 작성하지 않는다.
+- 계속 관리할 준수 의무 목록을 별도로 요청한 경우 필요한 capability는 `document.living-current-state`다. 선호 제공자 `living-doc-writer` 또는 동등한 제공자가 없으면 `living_doc_handoff`를 반환하고 `docs/` 상시 문서를 임의 작성하지 않는다.
 - 보고서에는 검토 기준일·범위·미확인 사항, 기술 사실 지도, 4개 법률 영역, 사례 비교, 위험 등록부, 출시 판단, 변호사 확인 질문, 출처를 포함한다.
 - 법률 결론이 바뀌는 미확정 사실은 질문 목록으로 넘기고 임의로 채우지 않는다.
 
