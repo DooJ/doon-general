@@ -10,7 +10,7 @@
 
 # DooN General
 
-**DooN General**은 기획, 디자인, 조사, 문서화와 일상 업무를 실행 가능한 결과로 연결하는 공개 Codex·Claude Code·Antigravity 플러그인입니다. 플러그인 전체와 내부 스킬을 각각 활성화할 수 있어 필요한 역할만 조합해 사용할 수 있습니다.
+**DooN General**은 기획, 디자인, 조사, 문서화와 일상 업무를 실행 가능한 결과로 연결하는 공개 Codex·Claude Code·Antigravity 플러그인입니다. 설치 시 모든 스킬을 포함하며, 설치 후 사용하지 않을 스킬을 개별적으로 끌 수 있습니다.
 
 ## 포함된 스킬
 
@@ -46,7 +46,19 @@
 
 요청의 목적과 필요한 결과물을 먼저 정리한 뒤, 적합한 전문 스킬이 조사·구조화·작성·검토를 맡습니다. 여러 스킬이 함께 쓰일 때도 각 역할의 입력과 산출물을 분리해 결과가 어디에서 만들어졌는지 추적할 수 있게 합니다.
 
-제품·디자인·문서 스킬을 기본 영역으로 두고, 여행과 전문 생활 영역은 필요한 스킬만 선택해 활성화하는 구성을 권장합니다. 모든 스킬은 이 저장소 안의 지침과 자료만으로 동작합니다.
+제품·디자인·문서 스킬을 기본 영역으로 두고, 여행과 전문 생활 영역은 사용하지 않을 스킬을 설치 후 끄는 구성을 권장합니다. 모든 스킬은 이 저장소 안의 지침과 자료만으로 동작합니다.
+
+여행 그룹에서는 `travel-planner`가 상위 스킬입니다. 플래너를 끄면 여섯 하위 여행 스킬도 함께 사용하지 않습니다. 플래너가 켜져 있으면 하위 스킬을 각각 끌 수 있고, 그 선택은 플래너를 껐다가 다시 켜도 유지됩니다.
+
+```bash
+bash scripts/plugin.sh skills status
+bash scripts/plugin.sh skills disable travel-planner
+bash scripts/plugin.sh skills enable travel-planner
+bash scripts/plugin.sh skills disable travel-flight-search
+bash scripts/plugin.sh skills enable travel-flight-search
+```
+
+이 명령은 플러그인 파일을 삭제하지 않고 사용 상태를 저장합니다. Codex의 스킬 설정과 Claude Code의 스킬 실행 거부 규칙을 갱신하며, 새 세션에서 적용됩니다. Antigravity는 현재 플러그인 단위 켜기·끄기만 공식 지원하므로 개별 스킬 차단은 검증 전입니다.
 
 ## 설치와 설정
 
@@ -56,7 +68,7 @@ cd doon-general
 bash scripts/plugin.sh install
 ```
 
-관리 스크립트가 컴퓨터에 설치된 Codex, Claude Code, Antigravity를 자동으로 찾아 각각 필요한 형식으로 설치합니다. 설치되지 않은 에이전트는 건너뜁니다.
+관리 스크립트가 컴퓨터에 설치된 Codex, Claude Code, Antigravity를 자동으로 찾아 각각 필요한 형식으로 설치합니다. 설치되지 않은 에이전트는 건너뜁니다. 같은 플러그인이 다른 마켓플레이스로 이미 설치되어 있으면 중복 설치하지 않습니다.
 
 ### 관리 명령
 

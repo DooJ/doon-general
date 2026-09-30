@@ -26,7 +26,8 @@ class SkillRelationTests(unittest.TestCase):
             with self.subTest(provider=provider):
                 self.assertTrue((SKILLS / provider / "SKILL.md").is_file())
                 self.assertIn(f"`{provider}`", planner)
-        self.assertIn("required_provider_missing", planner)
+        self.assertIn("`provider_mode: preferred|equivalent|tool_fallback`", planner)
+        self.assertIn("`partial: capability_unavailable`", planner)
 
     def test_cross_plugin_links_define_capability_and_fallback(self) -> None:
         legal = self.read_skill("project-legal-advisor")

@@ -108,6 +108,19 @@
     "default": "portable",
     "overrides": {}
   },
+  "activation_groups": [
+    {
+      "parent": "travel-planner",
+      "children": [
+        "travel-destination-research",
+        "travel-flight-search",
+        "travel-itinerary-builder",
+        "travel-lodging-search",
+        "travel-place-search",
+        "travel-transport-search"
+      ]
+    }
+  ],
   "groups": [
     {
       "id": "product-design-docs",
@@ -161,7 +174,7 @@
   ],
   "plugin": {
     "name": "doon-general",
-    "version": "4.3.2",
+    "version": "4.4.0",
     "display_name": "DooN General"
   }
 }

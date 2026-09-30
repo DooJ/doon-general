@@ -137,6 +137,8 @@ failure_policy: partial | block
 ```yaml
 domain: flight | lodging | destination | place | transport
 status: ready | partial | blocked | skipped
+provider_mode: preferred | equivalent | tool_fallback
+provider_id: "적용한 스킬 ID 또는 도구 경로"
 freshness: current | stale
 input_revision: 1
 as_of: 2026-09-17T10:00:00+09:00
