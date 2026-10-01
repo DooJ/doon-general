@@ -32,8 +32,8 @@
       "path": "skills/product-planner"
     },
     {
-      "name": "project-handoff",
-      "path": "skills/project-handoff"
+      "name": "project-work-checkpoint",
+      "path": "skills/project-work-checkpoint"
     },
     {
       "name": "project-legal-advisor",
@@ -137,7 +137,7 @@
         "interaction-designer",
         "living-doc-writer",
         "product-planner",
-        "project-handoff",
+        "project-work-checkpoint",
         "refining-implemented-ui",
         "requirements-analyst",
         "service-guide-builder",
@@ -179,7 +179,7 @@
   ],
   "plugin": {
     "name": "doon-general",
-    "version": "4.5.0",
+    "version": "5.0.0",
     "display_name": "DooN General"
   }
 }
