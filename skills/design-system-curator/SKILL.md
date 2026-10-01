@@ -10,6 +10,7 @@ description: "디자인 시스템, 디자인 토큰, 컴포넌트 규칙, 상태
 
 ## 번들 레퍼런스
 - token inventory, component state matrix, pattern library, handoff, visual QA 기준을 정리해야 하면 `references/component_state_matrix.md`를 읽습니다.
+- 사용자가 `DESIGN.md` 작성이나 기존 파일 보완을 명시하면 `references/design_md_playbook.md`를 읽고, 실제 화면·코드·선택된 방향에 근거해 작성합니다.
 - 단일 컴포넌트의 작은 스타일 판단에는 reference를 읽지 않고 본문과 기존 코드 패턴만 적용합니다.
 
 ## 역할
