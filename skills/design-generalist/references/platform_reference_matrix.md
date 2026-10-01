@@ -66,6 +66,7 @@
 | iOS 앱 | Apple HIG | https://developer.apple.com/design/human-interface-guidelines/ | navigation, sheet, safe area, gesture, permission, system component |
 | Android 앱 | Material Design 3 | https://m3.material.io/ | navigation bar/rail, FAB, snackbar, bottom sheet, adaptive layout |
 | 크로스플랫폼 앱 | Apple HIG + Material 3 + 실제 앱 패턴 | https://mobbin.com/ | 공통 IA와 플랫폼별 차이, onboarding, paywall, settings, profile |
+| 로그인 후 고객용 홈 | 실제 고객 포털·웹 앱 흐름 + 현재 제품 화면 | https://mobbin.com/ | 고객이 관리하는 대상의 현재 상태, 대표 작업 진입, 최근 변경, 도움이 필요한 상태. 운영용 목록은 필요한 깊이에 배치 |
 | 모바일 플로우 | 실제 앱 화면/흐름 | https://pageflows.com/ | signup, checkout, subscription, search, cancellation, notification flow |
 | 웹 앱/SaaS | 실제 SaaS 제품 + component library + UX flow reference | https://mobbin.com/, https://www.radix-ui.com/, https://ui.shadcn.com/ | dashboard, form, dialog, table, settings, billing, onboarding, empty/error state |
 | 관리자/운영툴 | enterprise design system + 실제 admin flow | https://mobbin.com/, https://ant.design/, https://atlassian.design/, https://carbondesignsystem.com/ | table, filter, batch action, status, permission, audit-friendly layout |
@@ -87,6 +88,12 @@
 | 엔터테인먼트/게임 | 몰입, 즉각 피드백, 진행감, 시각적 기억점 | 업무툴처럼 지나치게 절제된 중립 화면 |
 
 ## 웹 작업 레퍼런스 선택
+### 로그인 후 고객용 홈
+- 먼저 고객이 들어와서 확인할 제품 대상과 바로 실행할 행동을 정한다. 이번에 제공하는 기능과 이후 확장할 기능을 구분한다.
+- 참고 후보: 실제 고객용 웹 앱의 홈, Mobbin의 유사 흐름, 현재 제품의 화면과 브랜드 자산.
+- 볼 것: 현재 상태나 결과의 표현, 작업 진입, 최근 변경, 도움·오류 복구, 상세 관리 화면으로 내려가는 경로.
+- 피할 것: 고객의 첫 화면을 내부 운영자의 전체 현황 표와 필터로 시작하거나, 소개용 랜딩의 메시지를 로그인 후 작업 화면에 그대로 적용하는 것.
+
 ### SaaS / Web App
 - 참고 후보: Mobbin, Land-book, Radix UI, shadcn/ui, Atlassian Design, Ant Design, 실제 SaaS 제품의 공개 화면
 - 볼 것: side navigation, top bar, command/search, settings, billing, team management, empty state, loading skeleton
