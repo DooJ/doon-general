@@ -179,7 +179,7 @@
   ],
   "plugin": {
     "name": "doon-general",
-    "version": "5.0.0",
+    "version": "5.0.1",
     "display_name": "DooN General"
   }
 }
