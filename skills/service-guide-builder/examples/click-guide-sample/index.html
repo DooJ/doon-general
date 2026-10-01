@@ -20,6 +20,10 @@
         box-sizing: border-box;
       }
 
+      [hidden] {
+        display: none !important;
+      }
+
       body {
         margin: 0;
         color: var(--ink);
@@ -185,7 +189,7 @@
 
       .app-body {
         display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
+        grid-template-columns: 1fr;
         gap: 16px;
         padding: 20px;
       }
@@ -261,8 +265,7 @@
         border: 2px solid var(--brand);
         border-radius: 8px;
         background: rgba(47, 111, 237, 0.08);
-        pointer-events: auto;
-        cursor: pointer;
+        pointer-events: none;
       }
 
       .hotspot-box.active {
@@ -315,7 +318,7 @@
     <div class="guide-shell">
       <aside class="guide-nav">
         <h1>샘플 서비스 가이드</h1>
-        <p>실제 앱을 로드한 것이 아니라, 확인한 코드와 화면을 근거로 재현한 가이드 예시입니다.</p>
+        <p>가상 화면의 설명 연결 방식만 보여주는 예제입니다. 실제 서비스 화면이나 기능의 근거가 아닙니다.</p>
         <nav class="screen-list" id="screenList" aria-label="가이드 화면 목록"></nav>
       </aside>
 
@@ -334,16 +337,16 @@
         </div>
 
         <section class="viewer" id="viewer" aria-label="가이드 화면 재현 영역">
-          <div class="mock-app" id="mockApp">
+          <div class="mock-app" data-sample-screen="job">
             <header class="app-header">
-              <div data-guide-target="page-title">
+              <div data-guide-target="page-title" tabindex="0">
                 <h2>오늘의 콘텐츠 작업</h2>
                 <p>매장 화면에 표시할 콘텐츠를 만들고 상태를 확인합니다.</p>
               </div>
               <button class="primary" data-guide-target="new-job">새 작업 만들기</button>
             </header>
             <div class="app-body">
-              <section class="panel" data-guide-target="input-panel">
+              <section class="panel" data-guide-target="input-panel" tabindex="0">
                 <h3>작업 기준</h3>
                 <div class="field">
                   <label>작업명</label>
@@ -354,14 +357,24 @@
                   <div class="select">입구 세로형 1080 x 1920</div>
                 </div>
               </section>
-              <section class="panel" data-guide-target="status-panel">
+            </div>
+          </div>
+          <div class="mock-app" data-sample-screen="status" hidden>
+            <header class="app-header">
+              <div>
+                <h2>화면별 생성 상태</h2>
+                <p>가상 서비스의 작업 결과를 확인합니다.</p>
+              </div>
+            </header>
+            <div class="app-body">
+              <section class="panel" data-guide-target="status-panel" tabindex="0">
                 <h3>생성 상태</h3>
                 <div class="status-grid">
-                  <article class="status-card" data-guide-target="ready-card">
+                  <article class="status-card" data-guide-target="ready-card" tabindex="0">
                     <strong>입구 화면</strong>
                     <span>생성 준비 완료</span>
                   </article>
-                  <article class="status-card" id="stateCard" data-guide-target="state-card" data-state="normal">
+                  <article class="status-card" id="stateCard" data-guide-target="state-card" data-state="normal" tabindex="0">
                     <strong>매장 화면</strong>
                     <span id="stateText">대기 중</span>
                   </article>
@@ -386,28 +399,28 @@
           id: "job",
           title: "작업 생성",
           caption: "새 작업을 만들고 입력 기준을 확인합니다.",
-          source: "components/content-job/content-factory-app.tsx",
+          source: "가상 샘플 HTML/JS — 실제 제품 근거 아님",
           steps: [
             {
               target: "page-title",
               title: "화면 제목",
               lead: "사용자가 현재 작업 영역과 목적을 바로 이해하는 영역입니다.",
               action: "라우트 또는 화면 상태가 바뀌면 제목과 보조 설명도 함께 갱신됩니다.",
-              source: "HeaderView · title/subtitle",
+              source: "이 예제의 data-guide-target=page-title",
             },
             {
               target: "new-job",
               title: "새 작업 만들기",
               lead: "작업명 입력 모달을 열고 새 draft 생성을 시작합니다.",
               action: "클릭 후 JobNameDialog를 열고 확인 시 입력 단계로 이동합니다.",
-              source: "NewJobButton · createDraft()",
+              source: "이 예제의 data-guide-target=new-job",
             },
             {
               target: "input-panel",
               title: "작업 기준 입력",
               lead: "생성할 콘텐츠의 작업명과 표시 화면을 정합니다.",
               action: "값은 생성 요약과 파일 내보내기 기준으로 이어집니다.",
-              source: "InputStep · contentJobSchema",
+              source: "이 예제의 data-guide-target=input-panel",
             },
           ],
         },
@@ -415,28 +428,28 @@
           id: "status",
           title: "상태 확인",
           caption: "생성 준비, 대기, 오류 상태를 설명합니다.",
-          source: "services/content-job/status.ts",
+          source: "가상 샘플 HTML/JS — 실제 제품 근거 아님",
           steps: [
             {
               target: "status-panel",
               title: "상태 패널",
               lead: "화면별 생성 상태를 한 곳에서 비교합니다.",
               action: "부분 완료나 실패가 있어도 각 화면의 다음 행동을 분리해 보여줍니다.",
-              source: "StatusPanel · surfaceStatuses",
+              source: "이 예제의 data-guide-target=status-panel",
             },
             {
               target: "ready-card",
               title: "준비 완료 카드",
               lead: "입력값과 화면 매칭이 충족되어 생성 가능한 상태입니다.",
               action: "생성 요청 버튼이 활성화될 수 있습니다.",
-              source: "status.ready",
+              source: "이 예제의 data-guide-target=ready-card",
             },
             {
               target: "state-card",
               title: "대기/오류 카드",
               lead: "외부 provider, worker, 저장소 상태에 따라 대기 또는 오류로 바뀝니다.",
               action: "오류 상태에서는 상세 원인과 재시도 조건을 설명해야 합니다.",
-              source: "status.pending | status.error",
+              source: "이 예제의 data-guide-target=state-card",
               mock: "샘플에서는 버튼으로 오류 상태만 시뮬레이션합니다.",
             },
           ],
@@ -446,6 +459,7 @@
       const screenList = document.getElementById("screenList");
       const viewer = document.getElementById("viewer");
       const hotspotLayer = document.getElementById("hotspotLayer");
+      const screenViews = [...viewer.querySelectorAll("[data-sample-screen]")];
       const screenTitle = document.getElementById("screenTitle");
       const screenCaption = document.getElementById("screenCaption");
       const detailTitle = document.getElementById("detailTitle");
@@ -458,6 +472,10 @@
       let currentStepIndex = 0;
       let highlights = true;
       let errorState = false;
+
+      function activeScreenView() {
+        return screenViews.find((view) => view.dataset.sampleScreen === screens[currentScreenIndex].id);
+      }
 
       function flatSteps() {
         return screens.flatMap((screen, screenIndex) =>
@@ -494,20 +512,25 @@
 
       function renderHotspots() {
         const screen = screens[currentScreenIndex];
+        const screenView = activeScreenView();
         const viewerRect = viewer.getBoundingClientRect();
         hotspotLayer.innerHTML = screen.steps
           .map((step, index) => {
-            const target = viewer.querySelector(`[data-guide-target="${step.target}"]`);
-            if (!target) return "";
+            const targets = [...screenView.querySelectorAll("[data-guide-target]")].filter(
+              (element) => element.dataset.guideTarget === step.target,
+            );
+            if (targets.length !== 1) {
+              console.error(`설명 대상 불일치: ${screen.id}/${step.target} (${targets.length}개)`);
+              return "";
+            }
+            const target = targets[0];
             const rect = target.getBoundingClientRect();
             return `
-              <button
-                type="button"
+              <span
                 class="hotspot-box ${index === currentStepIndex ? "active" : ""}"
-                data-step-index="${index}"
-                aria-label="${step.title}"
+                aria-hidden="true"
                 style="left:${rect.left - viewerRect.left + viewer.scrollLeft}px;top:${rect.top - viewerRect.top + viewer.scrollTop}px;width:${rect.width}px;height:${rect.height}px"
-              ></button>
+              ></span>
             `;
           })
           .join("");
@@ -523,6 +546,9 @@
       function selectScreen(screenIndex) {
         currentScreenIndex = Math.max(0, Math.min(screenIndex, screens.length - 1));
         currentStepIndex = 0;
+        screenViews.forEach((view) => {
+          view.hidden = view.dataset.sampleScreen !== screens[currentScreenIndex].id;
+        });
         renderScreenList();
         renderDetail();
         renderHotspots();
@@ -536,6 +562,9 @@
         const next = flat[(current + delta + flat.length) % flat.length];
         currentScreenIndex = next.screenIndex;
         currentStepIndex = next.stepIndex;
+        screenViews.forEach((view) => {
+          view.hidden = view.dataset.sampleScreen !== screens[currentScreenIndex].id;
+        });
         renderScreenList();
         renderDetail();
         renderHotspots();
@@ -546,9 +575,25 @@
         if (button) selectScreen(Number(button.dataset.screenIndex));
       });
 
-      hotspotLayer.addEventListener("click", (event) => {
-        const button = event.target.closest("[data-step-index]");
-        if (button) selectStep(Number(button.dataset.stepIndex));
+      viewer.addEventListener("click", (event) => {
+        const target = event.target.closest("[data-guide-target]");
+        if (!target || !activeScreenView().contains(target)) return;
+        const index = screens[currentScreenIndex].steps.findIndex(
+          (step) => step.target === target.dataset.guideTarget,
+        );
+        if (index >= 0) selectStep(index);
+      });
+
+      viewer.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        const target = event.target.closest("[data-guide-target]");
+        if (!target || !activeScreenView().contains(target)) return;
+        const index = screens[currentScreenIndex].steps.findIndex(
+          (step) => step.target === target.dataset.guideTarget,
+        );
+        if (index < 0) return;
+        event.preventDefault();
+        selectStep(index);
       });
 
       document.getElementById("prevButton").addEventListener("click", () => move(-1));
@@ -563,15 +608,15 @@
         stateCard.dataset.state = errorState ? "error" : "normal";
         stateText.textContent = errorState ? "provider 미연결" : "대기 중";
         event.currentTarget.textContent = errorState ? "기본 상태" : "오류 상태";
-        renderHotspots();
+        selectScreen(1);
+        selectStep(2);
       });
 
       window.addEventListener("resize", renderHotspots);
       viewer.addEventListener("scroll", renderHotspots);
 
-      renderScreenList();
-      renderDetail();
-      window.setTimeout(renderHotspots, 0);
+      selectScreen(0);
+      window.requestAnimationFrame(renderHotspots);
     </script>
   </body>
 </html>
