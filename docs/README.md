@@ -10,7 +10,7 @@
 |---|---|---|
 | 제품·디자인 | `product-planner` → `requirements-analyst` → `information-architect`·`interaction-designer` → `ui-concept-director`·`design-generalist`·`design-system-curator` | 문제·요구사항·화면 흐름·시각 규칙을 단계별로 구분. 필요한 단계만 사용 |
 | 조사·콘텐츠 | `ux-researcher`, `content-strategist`, `refining-implemented-ui`, `service-guide-builder` | 가설 검증, 문구, 구현 UI 개선, 실제 서비스 안내는 서로 다른 근거를 사용 |
-| 문서 | `living-doc-writer`, `snapshot-report-writer` | 계속 갱신할 현재 문서와 특정 시점의 고정 보고서를 구분 |
+| 문서 | `living-doc-writer`, `project-handoff`, `snapshot-report-writer` | 계속 갱신할 현재 문서, 작업별 인수인계와 특정 시점의 고정 보고서를 구분 |
 | 여행 | `travel-planner`와 6개 전문 스킬 | 상위 계획과 항공·숙소·목적지·장소·교통·일정 조립을 분리 |
 | 자문 | `project-legal-advisor`, `stock-analyst`, `real-estate-expert`, `pt-trainer` | 시점·출처·전제와 불확실성을 밝히는 참고 분석. 전문 자격자의 개별 판단을 대체하지 않음 |
 | 유지 | `general-skill-versioning` | 이 저장소의 스킬 버전·출처·검증 |

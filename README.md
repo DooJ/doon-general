@@ -29,6 +29,7 @@
 | `design-system-curator` | 디자인 토큰, 컴포넌트 상태, 패턴과 시각 QA 기준을 정리합니다. |
 | `refining-implemented-ui` | 구현된 UI를 기준 화면과 비교해 개선안과 구현 일치 여부를 검토합니다. |
 | `living-doc-writer` | 요구사항, 운영, 온보딩 등 계속 갱신할 최신 문서를 작성합니다. |
+| `project-handoff` | 대화·커밋 중단점을 대조해 프로젝트 작업의 결과, 검증 상태와 재개 지점을 갱신합니다. |
 | `snapshot-report-writer` | 특정 시점의 프로젝트 상태, 구조, 리스크와 준비도를 보고서로 남깁니다. |
 | `service-guide-builder` | 실제 화면과 코드를 근거로 클릭형 서비스 사용 가이드를 만듭니다. |
 | `travel-planner` | 여러 여행 조사 결과를 조율해 일정, 비용과 대체안으로 합성합니다. |
