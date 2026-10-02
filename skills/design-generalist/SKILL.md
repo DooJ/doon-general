@@ -20,6 +20,7 @@ description: "선택된 제품 디자인 방향을 화면 구조, 시각 위계,
 - 화면 개선 작업에서는 가능하면 현재 화면, 스크린샷, CSS/컴포넌트 구조, 실제 데이터 밀도를 먼저 확인합니다.
 - 1차 UI와 기능 구현 이후 별도 리뷰 스튜디오에서 기준본·수정안·최종 통합본·실제 구현을 끝까지 비교하는 작업이면 `../refining-implemented-ui/SKILL.md`를 우선하고, 이 스킬은 세부 디자인 판단과 handoff 렌즈로 사용합니다.
 - `DESIGN.md` 같은 디자인 시스템 파일 생성은 사용자가 명시적으로 요청했을 때만 별도 작업으로 다룹니다.
+- 사용자가 화면 시안에서 재사용 가능한 `DESIGN.md`·디자인 가이드·컴포넌트 전시 화면까지 요청하면 `../design-system-curator/SKILL.md`와 그 시각 가이드 레퍼런스로 인계합니다. 정밀 화면을 렌더링하는 일과 디자인 시스템을 시각적으로 전시하는 일은 서로 다른 산출물입니다.
 
 ## 이 스킬이 맞는 요청
 
@@ -33,7 +34,7 @@ description: "선택된 제품 디자인 방향을 화면 구조, 시각 위계,
 
 - 사이트맵, navigation, 검색/필터 같은 IA만 필요하면 `information-architect`를 사용합니다.
 - 상태 전이, 오류 복구, 입력 피드백만 필요하면 `interaction-designer`를 사용합니다.
-- token, component governance, versioning, visual regression처럼 디자인 시스템 자체가 목적이면 `design-system-curator`를 사용합니다.
+- token, component governance, versioning, visual regression, `DESIGN.md` 또는 시각 디자인 가이드처럼 디자인 시스템 자체가 목적이면 `design-system-curator`를 사용합니다.
 
 ## 작업 모드 선택
 

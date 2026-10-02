@@ -50,3 +50,4 @@
 - 프론트엔드 산출물이 포함되면 CSS variable, breakpoint, state class, spacing scale을 코드에 드러냅니다.
 - acceptance criteria는 "예뻐 보인다"가 아니라 관찰 가능한 동작 기준으로 씁니다.
 - 레퍼런스 기반 handoff는 검색어/URL/title을 장식처럼 나열하지 말고, 어떤 관찰이 어떤 layout, component, copy, motion 결정으로 이어졌는지 연결합니다.
+- 제품 화면만 렌더링한 결과는 재사용 가능한 디자인 가이드와 다릅니다. 사용자가 시스템화를 요청하면 `design-system-curator`에 넘겨 `DESIGN.md`의 결정·토큰, 상세 가이드의 치수·상태, 브라우저/플랫폼에서 볼 수 있는 컴포넌트 예시를 서로 연결합니다. 구체적인 전시 항목과 QA는 그 스킬의 `references/visual_design_guide_playbook.md`를 따릅니다.

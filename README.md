@@ -26,7 +26,7 @@
 | `content-strategist` | UX writing, 버튼·상태 문구, 브랜드 voice and tone을 만듭니다. |
 | `ui-concept-director` | 디자인 레퍼런스를 바탕으로 여러 UI 방향과 첫 화면 콘셉트를 제안합니다. |
 | `design-generalist` | 선택된 디자인 방향을 레이아웃, 반응형, 접근성과 구현 handoff로 구체화합니다. |
-| `design-system-curator` | 디자인 토큰, 컴포넌트 상태, 패턴과 시각 QA 기준을 정리합니다. |
+| `design-system-curator` | DESIGN.md, 디자인 토큰·상태와 브라우저에서 볼 수 있는 시각 디자인 가이드를 정리합니다. |
 | `refining-implemented-ui` | 구현된 UI를 기준 화면과 비교해 개선안과 구현 일치 여부를 검토합니다. |
 | `living-doc-writer` | 요구사항, 운영, 온보딩 등 계속 갱신할 최신 문서를 작성합니다. |
 | `project-work-checkpoint` | 의미 있는 대화·커밋 중단점에서 작업의 결과, 검증 상태와 다음 행동을 기존 기록에 갱신합니다. |
