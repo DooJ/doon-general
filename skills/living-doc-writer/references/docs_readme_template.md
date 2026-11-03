@@ -45,6 +45,9 @@
 - `docs/project/milestone-plan.md` (최종 갱신일: YYYY-MM-DD)
   - 내용: 개발 단계, 우선순위, 작업 분해, 선행 조건, 리스크, 출시 기준
 
+- `docs/project/wbs.md`, `docs/project/wbs.csv` (최종 갱신일: YYYY-MM-DD)
+  - 내용: 작업 ID, 역할/실제 배정, 선행, 공수 범위, 인도물, 완료 기준, 연결 ID. 표/CSV 중 정본과 재생성 경로 명시
+
 ### 4. 개발 기획 및 요구사항
 - `docs/planning/poc-plan.md` (최종 갱신일: YYYY-MM-DD)
   - 내용: 검증할 가설, 최소 실험, 성공 기준, 중단 기준
@@ -60,6 +63,11 @@
   - 내용: 화면 목록, 화면 목적, 입력/버튼/상태, 화면 전환, 오류 처리
 - `docs/planning/feature-catalog.md` (최종 갱신일: YYYY-MM-DD)
   - 내용: 코드에서 확인한 기능군, 진입점, 구현 상태, 관련 문서
+
+- `docs/storyboard/index.html` 또는 디자인 파일 (최종 갱신일: YYYY-MM-DD)
+  - 내용: 화면/영역 번호·행동 ID·주석·상태·전환·API/데이터/검수 연결. UI 없는 프로젝트는 호출/이벤트 도식과 해당 없음 사유
+- `docs/planning/traceability.md` (최종 갱신일: YYYY-MM-DD)
+  - 내용: 초기 범위→요구→화면 행동/시스템 흐름→API/저장→WBS→검수, 후속/미정/미검증 및 연결 검토 결과
 
 ### 5. 디자인 명세와 디자인 시스템
 - `docs/design/design-brief.md` (최종 갱신일: YYYY-MM-DD)
@@ -90,6 +98,11 @@
   - 내용: API 목록, 인증, request/response, 에러, 권한, 페이지네이션, 예시 payload
 - `docs/interfaces/events-and-messages.md` (최종 갱신일: YYYY-MM-DD)
   - 내용: 이벤트, 메시지 포맷, 비동기 상호작용 규칙, 재시도와 중복 처리
+
+- `docs/data/physical-schema.md`, 프로젝트 migration 경로 (최종 갱신일: YYYY-MM-DD)
+  - 내용: 저장 엔진별 물리 정의·키/제약/인덱스·원자성·이관/복구·필드 사전·격리 DB 검증 결과
+- `docs/interfaces/openapi.json` 등 계약 스키마 (최종 갱신일: YYYY-MM-DD)
+  - 내용: 실제 API/이벤트 전송 형식에 맞는 요청/응답·오류·정상/오류 예제. 생성 원본과 명세 검증 경로
 
 ### 8. QA 및 릴리즈
 - `docs/qa/test-strategy.md` (최종 갱신일: YYYY-MM-DD)

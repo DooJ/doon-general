@@ -25,7 +25,7 @@ description: "현재 작업 중인 워크스페이스에서 계속 갱신할 최
 - 기획 요청이면 `references/document_intake_router.md`를 읽고, 그 결과에 따라 아래 reference를 추가로 읽습니다.
   - 아이디어 기획: `references/idea_planning_package.md`
   - 디자인 기획: `references/design_planning_package.md`
-  - 개발 착수 기획: `references/planning_document_package.md`
+  - 개발 착수 기획: `references/planning_document_package.md` (WBS·DB 물리 설계·시각적 스토리보드·문서 간 연결 검토 포함)
 - 기획 외 문서군, 여러 문서군이 섞인 요청, 기존 프로젝트 current docs 정리는 `references/living_document_package_matrix.md`를 읽습니다.
 - 하네스 회의 결과를 문서화하거나 `publish/harness/` 경로를 입력으로 받으면 `references/harness_living_doc_bridge.md`를 읽습니다.
 - 질문 게이트나 품질 기준이 필요하면 `references/requirement_question_gate.md`, `references/document_quality_standards.md`를 읽고 따릅니다.
@@ -67,7 +67,7 @@ description: "현재 작업 중인 워크스페이스에서 계속 갱신할 최
 - 문서 수보다 요청의 성공 기준과 갱신 가능성을 확인합니다. 단일 파일이 필요한 내용을 충분히 담으면 그대로 완료하고, 서로 다른 독자·소유자·갱신 주기가 섞였을 때만 분리합니다.
 - 아이디어 기획에서는 문제, 사용자, 가치, 가설, 검증 계획이 빠지지 않아야 합니다.
 - 디자인 기획에서는 디자인 방향 후보, 레퍼런스 분석, UX 포지셔닝, 선택/보류 결정이 빠지지 않아야 합니다.
-- 개발 착수 문서에는 POC 필요 여부, MVP 범위, PRD 작성 또는 지연 사유가 있어야 합니다.
+- 개발 착수 문서에는 POC 필요 여부, MVP 범위, PRD 작성 또는 지연 사유가 있어야 합니다. 개발 인도 수준을 요청받으면 해당 WBS·DB 물리 설계·API 상세·시각적 스토리보드와 행동 단위 연결 검토를 `planning_document_package.md` 기준으로 보완합니다.
 - 요구사항 정의서에는 기능별 acceptance criteria와 예외/오류 조건이 있어야 합니다.
 - 화면/시나리오 문서에는 빈 상태, 로딩, 오류, 성공, 권한 부족 같은 상태가 빠지지 않아야 합니다.
 - 기능 카탈로그에는 코드에서 확인한 기능군, 진입점, 구현 상태, 관련 코드/문서, 미확인 사항이 있어야 합니다.
