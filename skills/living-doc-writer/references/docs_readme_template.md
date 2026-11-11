@@ -60,7 +60,7 @@
 - `docs/planning/user-scenarios.md` (최종 갱신일: YYYY-MM-DD)
   - 내용: 사용자 유형, 핵심 사용자 여정, 성공/실패/복구 흐름
 - `docs/planning/screen-spec.md` (최종 갱신일: YYYY-MM-DD)
-  - 내용: 화면 목록, 화면 목적, 입력/버튼/상태, 화면 전환, 오류 처리
+  - 내용: IA(메뉴·화면 계층·탐색·권한별 노출) 또는 IA 정본 링크, 화면 목적, 입력/버튼/상태, 전환, 오류 처리
 - `docs/planning/feature-catalog.md` (최종 갱신일: YYYY-MM-DD)
   - 내용: 코드에서 확인한 기능군, 진입점, 구현 상태, 관련 문서
 
@@ -71,7 +71,7 @@
 
 ### 5. 디자인 명세와 디자인 시스템
 - `docs/design/design-brief.md` (최종 갱신일: YYYY-MM-DD)
-  - 내용: 디자인 방향, 정보 구조, 레이아웃 원칙, 컴포넌트, 상태, 반응형, 접근성, 구현 handoff
+  - 내용: 디자인 가이드와 화면 시안의 정본·완료 범위·상태, 구현에 필요한 에셋 목록 또는 링크
 - `docs/design-system/components.md` (최종 갱신일: YYYY-MM-DD)
   - 내용: 재사용 컴포넌트, 상태, 사용 기준, 금지 패턴
 - `docs/design-system/tokens.md` (최종 갱신일: YYYY-MM-DD)

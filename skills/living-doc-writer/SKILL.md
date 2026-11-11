@@ -1,6 +1,6 @@
 ---
 name: "living-doc-writer"
-description: "현재 작업 중인 워크스페이스에서 계속 갱신할 최신 신뢰본(living docs)을 생성하거나 코드·요구사항 변화에 맞춰 갱신할 때 사용합니다. 요구사항, API/데이터 모델, 운영/runbook, 온보딩, QA, 정책, 정적 사용 설명서, 문서 인덱스가 대상입니다. 시점 보고서와 인터랙티브 웹 가이드는 제외하며 각각 snapshot-report-writer와 service-guide-builder로 라우팅합니다."
+description: "현재 작업 중인 워크스페이스에서 계속 갱신할 최신 신뢰본(living docs)을 생성하거나 코드·요구사항 변화에 맞춰 갱신할 때 사용합니다. 개발 착수 시 필요한 최소 문서, 요구사항, API/데이터 모델, 운영/runbook, 온보딩, QA, 정책, 정적 사용 설명서, 문서 인덱스가 대상입니다. 시점 보고서와 인터랙티브 웹 가이드는 제외하며 각각 snapshot-report-writer와 service-guide-builder로 라우팅합니다."
 ---
 
 # 상시 문서 작성기
@@ -22,10 +22,11 @@ description: "현재 작업 중인 워크스페이스에서 계속 갱신할 최
 - 산출물이 상시 유지 문서인지, 시점성 분석 보고서인지 구분합니다. 후자라면 `../snapshot-report-writer/SKILL.md`가 더 적합할 수 있습니다.
 - 작업이 `기획`, `의사결정`, `진행 상태`, `운영/배포`, `온보딩/인수인계`, `QA/테스트`, `데이터/보안/정책`, `디자인 시스템/콘텐츠`, `비즈니스/성과`, `문서 운영`, `신규 단일 문서 작성`, `기존 문서 갱신` 중 무엇인지 먼저 분류합니다.
 - 넓은 문서 요청이면 먼저 `references/document_purpose_router.md`를 읽고, 상시 문서로 다룰 목적과 만들 문서군을 정합니다.
-- 기획 요청이면 `references/document_intake_router.md`를 읽고, 그 결과에 따라 아래 reference를 추가로 읽습니다.
+- 실제 개발 착수 의도가 분명하면 바로 개발 착수 패키지를 읽고, 구현 전에 필요한 파일을 작성하거나 갱신합니다. UI가 범위에 있으면 `design-generalist`를 함께 읽어 IA·열람 가능한 화면 시안·에셋 목록을 연결합니다.
+- 기획 단계가 불분명하면 `references/document_intake_router.md`를 읽고, 그 결과에 따라 아래 reference를 추가로 읽습니다.
   - 아이디어 기획: `references/idea_planning_package.md`
   - 디자인 기획: `references/design_planning_package.md`
-  - 개발 착수 기획: `references/planning_document_package.md` (WBS·DB 물리 설계·시각적 스토리보드·문서 간 연결 검토 포함)
+  - 개발 착수 기획: `references/planning_document_package.md` (규모별 최소 문서, IA, 시안·에셋 연결, WBS·DB·문서 간 연결 검토). 실제 개발 착수에 해당하면 문서 요청 없이 이 기준으로 작성하거나 갱신합니다.
 - 기획 외 문서군, 여러 문서군이 섞인 요청, 기존 프로젝트 current docs 정리는 `references/living_document_package_matrix.md`를 읽습니다.
 - 하네스 회의 결과를 문서화하거나 `publish/harness/` 경로를 입력으로 받으면 `references/harness_living_doc_bridge.md`를 읽습니다.
 - 질문 게이트나 품질 기준이 필요하면 `references/requirement_question_gate.md`, `references/document_quality_standards.md`를 읽고 따릅니다.
