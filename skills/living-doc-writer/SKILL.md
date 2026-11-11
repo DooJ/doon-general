@@ -8,7 +8,7 @@ description: "현재 작업 중인 워크스페이스에서 계속 갱신할 최
 - 문서 본문은 한국어로 작성합니다. 코드 식별자, API 이름, 파일 경로, 명령어, 로그, 외부 고유명사는 원문을 유지할 수 있지만 해설과 요약은 한국어로 둡니다.
 - 문서를 쓰기 전에 문서 루트를 결정합니다. 사용자가 별도 경로를 주지 않았다면 기존 `docs/`를 우선 사용하고, 없으면 `docs/`를 기본값으로 삼습니다.
 - 문서 루트에 `README.md`가 있으면 이를 유지 문서의 manifest로 취급합니다.
-- manifest가 없거나 비어 있으면 `references/docs_readme_template.md`를 불러와 시작 템플릿으로 사용합니다.
+- manifest가 없거나 비어 있으면 `references/docs_readme_template.md`를 불러와 시작 템플릿으로 사용합니다. 아래의 용어·현재 결정 부분 갱신은 예외입니다.
 - 기존 코드가 있는 주제는 반드시 소스 코드에서 사실을 검증합니다. API, 엔티티, 필드, 흐름, 요구사항을 지어내지 않습니다.
 - 아직 코드가 없는 기획 단계에서는 사용자 발화, 회의 메모, 첨부 자료, 기존 문서를 근거로 삼고 `확정`, `가정`, `미정`, `사용자 확인 필요`를 분리합니다.
 - 하네스 산출물을 입력으로 받으면 `references/harness_living_doc_bridge.md`를 읽고, 회의별 의견 원문이 아니라 오케스트레이터가 종합한 결론과 채택된 deliverable만 최신 상시 문서로 승격합니다.
@@ -32,6 +32,13 @@ description: "현재 작업 중인 워크스페이스에서 계속 갱신할 최
 - 질문 게이트나 품질 기준이 필요하면 `references/requirement_question_gate.md`, `references/document_quality_standards.md`를 읽고 따릅니다.
 - 단일 문서 요청이라도 요구사항, 화면, 디자인, 기술 설계, QA처럼 빠지기 쉬운 항목이 있으면 `references/document_quality_standards.md`를 읽고 필수 섹션을 확인합니다.
 
+## 업무 용어와 결정의 부분 갱신
+
+- 계약·설계 작업에서 새 용어나 기존 용어의 의미 변경이 확정된 경우에만 관련 용어집·결정 기록을 확인합니다. 일반 문구 수정이나 의미가 유지되는 이름 정리에는 이 절차를 추가하지 않습니다.
+- 한 용어의 서로 다른 의미를 구체적 사례와 코드·정책으로 대조하고, 합의된 정의와 미정 사항을 분리합니다. 기존 용어집의 해당 항목을 갱신하며 용어집에는 구현 상세를 섞지 않습니다. 기존 기록 위치가 없으면 실제로 재사용할 정의가 생겼을 때만 최소 기록을 만듭니다.
+- ADR은 되돌리기 비용이 크고, 배경 없이 선택 이유를 이해하기 어려우며, 실제 대안을 비교한 결정에 한해 `snapshot-report-writer`로 연결합니다. 사소한 선택은 기존 기술 문서에 남기고 같은 결정을 복제하지 않습니다.
+- 용어·현재 결정의 부분 갱신만 요청되면 해당 문서와 근거, 기존 인덱스 항목만 확인합니다. 문서 패키지 reference를 추가로 읽거나 새 manifest·요구사항 문서를 만들지 않습니다.
+
 ## 질문 게이트
 
 - 문서 작성 전에 현재 요청이 아이디어 검토인지, 디자인 방향 탐색인지, 개발 착수인지 먼저 판별합니다.
@@ -46,7 +53,7 @@ description: "현재 작업 중인 워크스페이스에서 계속 갱신할 최
 ## 작업 절차
 
 1. 사용자 요청과 현재 프로젝트 상태를 기준으로 작업 유형과 문서 루트를 확정합니다.
-2. 문서 루트의 `README.md` manifest를 읽습니다. 없거나 비어 있으면 `references/docs_readme_template.md`로 생성합니다.
+2. 문서 루트의 `README.md` manifest를 읽습니다. 없거나 비어 있으면 `references/docs_readme_template.md`로 생성합니다. 용어·현재 결정의 부분 갱신은 위 부분 갱신 기준을 따릅니다.
 3. 넓은 문서 요청이면 `references/document_purpose_router.md` 기준으로 문서 목적을 판별합니다.
 4. 판별 결과가 기획이면 `references/document_intake_router.md` 기준으로 아이디어, 디자인, 개발 착수 중 현재 단계를 판별합니다.
 5. 하네스 회의 결과가 입력이면 `references/harness_living_doc_bridge.md` 기준으로 source meeting, deliverable, target living docs root를 확정합니다.
